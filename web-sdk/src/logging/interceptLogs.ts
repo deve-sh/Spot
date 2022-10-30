@@ -1,13 +1,21 @@
 import { getInstance } from '../utils/instance';
 
-let alreadyInterceptedLogging: boolean;
+import type LogEntry from '../types/LogEntry';
+import type LogTypes from '../types/LogTypes';
+import { LogFragment } from '../types/LogEntry';
 
-const processLogFragment = (logFragment: any) => ({
+let alreadyInterceptedLogging: boolean;
+let logsQueue: LogEntry[] = [];
+
+const processLogFragment = (logFragment: any): LogFragment => ({
 	type: typeof logFragment,
 	value: typeof logFragment !== 'string' ? JSON.stringify(logFragment) : logFragment
 });
 
-const processLog = (logs: any[]) => logs.map(processLogFragment);
+const processLog = (logFragments: any[], severity: LogTypes): LogEntry => ({
+	fragments: logFragments.map(processLogFragment),
+	severity
+});
 
 const interceptLogs = () => {
 	if (alreadyInterceptedLogging) return;
@@ -17,22 +25,19 @@ const interceptLogs = () => {
 	const originalConsoleWarn = console.warn;
 	const originalConsoleError = console.error;
 
-	console.log = function (...args) {
-		originalConsoleLog(...args);
-		const instance = getInstance();
-		if (instance) instance.sendLogs('info', processLog(args));
+	console.log = function (...logFragments) {
+		originalConsoleLog(...logFragments);
+		logsQueue.push(processLog(logFragments, 'info'));
 	};
 
-	console.warn = function (...args) {
-		originalConsoleWarn(...args);
-		const instance = getInstance();
-		if (instance) instance.sendLogs('warn', processLog(args));
+	console.warn = function (...logFragments) {
+		originalConsoleWarn(...logFragments);
+		logsQueue.push(processLog(logFragments, 'warn'));
 	};
 
-	console.error = function (...args) {
-		originalConsoleError(...args);
-		const instance = getInstance();
-		if (instance) instance.sendLogs('error', processLog(args));
+	console.error = function (...logFragments) {
+		originalConsoleError(...logFragments);
+		logsQueue.push(processLog(logFragments, 'error'));
 	};
 };
 
