@@ -1,7 +1,9 @@
-import { getInstance } from '../utils/instance';
 import type { NavigationTypeEntry, NetworkCallEntry, VitalsEntry } from '../types/MonitoringEntry';
 
-let lastCount = 0;
+import { getInstance } from '../utils/instance';
+import config from '../config';
+
+let lastProcessedLogsTill = 0;
 
 const mapPerformanceEntries = () => {
 	// Performance API not supported
@@ -10,7 +12,7 @@ const mapPerformanceEntries = () => {
 	const entries = globalThis.performance.getEntries();
 	if (!entries.length) return;
 
-	const remainingEntries = entries.slice(lastCount, entries.length);
+	const remainingEntries = entries.slice(lastProcessedLogsTill, entries.length);
 	const monitoringEntries = [];
 	const location = JSON.stringify({
 		...globalThis.location,
@@ -21,7 +23,10 @@ const mapPerformanceEntries = () => {
 		const entry = remainingEntries[i];
 
 		if (entry instanceof PerformanceResourceTiming) {
-			if (['fetch', 'xmlhttprequest'].includes(entry.initiatorType)) {
+			if (
+				['fetch', 'xmlhttprequest'].includes(entry.initiatorType) &&
+				!entry.name.includes(config.BACKEND_URL)
+			) {
 				// Network/API Calls
 				monitoringEntries.push({
 					type: 'network-call',
@@ -44,7 +49,7 @@ const mapPerformanceEntries = () => {
 		}
 	}
 
-	lastCount = entries.length - 1;
+	lastProcessedLogsTill = entries.length - 1;
 
 	const instance = getInstance();
 	if (instance && monitoringEntries.length) instance.sendEntries(monitoringEntries); // Dispatch API call to send these entries to backend.
