@@ -1,9 +1,12 @@
 import { v4 } from 'uuid';
-import MonitoringEntry from './types/MonitoringEntry';
 
+import type MonitoringEntry from './types/MonitoringEntry';
+import type LogTypes from './types/LogTypes';
 import UserDetails, { defaultUserDetails } from './types/UserDetails';
+
 import { getInstance, setInstance } from './utils/instance';
-import setupMonitoringInterval from './utils/setupMonitoringInterval';
+import setupMonitoring from './utils/setupMonitoringInterval';
+import setupLogInterception from './utils/setupLogInterception';
 
 class Spot {
 	public projectId: string = '';
@@ -18,8 +21,8 @@ class Spot {
 		this.sessionId = v4();
 		setInstance(this); // Singleton for a single environment.
 
-		// Setup Monitoring Interval
-		setupMonitoringInterval();
+		setupMonitoring();
+		setupLogInterception();
 	}
 
 	identify(userDetails: UserDetails) {
@@ -27,6 +30,8 @@ class Spot {
 	}
 
 	sendEntries(entries: MonitoringEntry[]) {}
+
+	sendLogs(logType: LogTypes, logs: any[]) {}
 }
 
 export default Spot;

@@ -1,7 +1,8 @@
 import config from '../config';
+import mapPerformanceEntries from '../monitoring/mapPerformanceEntries';
 
-const setupMonitoringInterval = () => {
-	globalThis.setInterval(function () {}, config.MONITORING_INTERVAL);
+const setupMonitoring = () => {
+	globalThis.setInterval(mapPerformanceEntries, config.MONITORING_INTERVAL);
 };
 
-export default setupMonitoringInterval;
+export default setupMonitoring;
