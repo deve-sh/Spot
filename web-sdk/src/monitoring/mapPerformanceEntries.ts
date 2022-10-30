@@ -34,7 +34,7 @@ const mapPerformanceEntries = () => {
 		}
 		if (entry instanceof PerformanceNavigationTiming) {
 			// Contains info like domInteractive, domContentLoaded benchmarks.
-			monitoringEntries.push({ location, ...entry } as NavigationTypeEntry);
+			monitoringEntries.push({ location, ...entry.toJSON() } as NavigationTypeEntry);
 		}
 		if (entry instanceof PerformancePaintTiming) {
 			if (entry.name === 'first-contentful-paint')
@@ -47,7 +47,7 @@ const mapPerformanceEntries = () => {
 	lastCount = entries.length - 1;
 
 	const instance = getInstance();
-	if (instance) instance.sendEntries(monitoringEntries); // Dispatch API call to send these entries to backend.
+	if (instance && monitoringEntries.length) instance.sendEntries(monitoringEntries); // Dispatch API call to send these entries to backend.
 };
 
 export default mapPerformanceEntries;
