@@ -1,8 +1,10 @@
 import Spot from '../index';
 
-export const getInstance = (): Spot | undefined => (globalThis as any).spotInstance;
+let spotInstance: Spot;
+
+export const getInstance = (): Spot | undefined => spotInstance;
 
 export const setInstance = (instance: Spot) => {
 	if (getInstance()) return;
-	(globalThis as any).spotInstance = instance;
+	spotInstance = instance;
 };
