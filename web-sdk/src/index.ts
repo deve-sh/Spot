@@ -1,7 +1,7 @@
 import { v4 } from 'uuid';
 
 import type MonitoringEntry from './types/MonitoringEntry';
-import type LogTypes from './types/LogTypes';
+import type LogEntry from './types/LogEntry';
 import UserDetails, { defaultUserDetails } from './types/UserDetails';
 
 import { getInstance, setInstance } from './utils/instance';
@@ -31,7 +31,7 @@ class Spot {
 
 	sendEntries(entries: MonitoringEntry[]) {}
 
-	sendLogs(logType: LogTypes, logs: any[]) {}
+	sendLogs(logs: LogEntry[]) {}
 }
 
 export default Spot;
