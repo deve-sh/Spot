@@ -1,0 +1,9 @@
+{
+	"rules": {
+		"no-unused-vars": "error",
+		"no-dupe-keys": "error",
+		"no-unused-expressions": "warn",
+		"unused-imports/no-unused-imports": "error",
+		"unused-imports/no-unused-vars": "error"
+	}
+}
