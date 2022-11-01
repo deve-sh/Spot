@@ -51,7 +51,7 @@ const mapPerformanceEntries = () => {
 		}
 	}
 
-	lastProcessedLogsTill = entries.length - 1;
+	lastProcessedLogsTill = entries.length;
 
 	const instance = getInstance();
 	if (instance && monitoringEntries.length) instance.sendEntries(monitoringEntries); // Dispatch API call to send these entries to backend.
