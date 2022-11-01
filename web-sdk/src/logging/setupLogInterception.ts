@@ -1,4 +1,4 @@
-import interceptLogs from '../logging/interceptLogs';
+import interceptLogs from './interceptLogs';
 
 const setupLogInterception = () => interceptLogs();
 
