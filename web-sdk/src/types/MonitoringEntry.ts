@@ -12,13 +12,15 @@ export type NetworkCallEntry = {
 export interface NavigationTypeEntry extends PerformanceNavigationTiming {
 	location: string; // JSON.stringify(window.location);
 	sessionId?: string;
+	type: 'navigate';
 }
 
 export interface VitalsEntry {
-	fcp?: number;
-	fp?: number;
+	vitals_type: 'fcp' | 'fp';
+	value: number;
 	location: string; // JSON.stringify(window.location);
 	sessionId?: string;
+	type: 'vitals';
 }
 
 type MonitoringEntry = NetworkCallEntry | NavigationTypeEntry | VitalsEntry;

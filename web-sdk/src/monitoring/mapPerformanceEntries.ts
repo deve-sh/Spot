@@ -47,13 +47,25 @@ const mapPerformanceEntries = () => {
 		}
 		if (entry instanceof PerformanceNavigationTiming) {
 			// Contains info like domInteractive, domContentLoaded benchmarks.
-			monitoringEntries.push({ location, ...entry.toJSON() } as NavigationTypeEntry);
+			monitoringEntries.push({
+				type: 'navigate',
+				location,
+				...entry.toJSON()
+			} as NavigationTypeEntry);
 		}
 		if (entry instanceof PerformancePaintTiming) {
 			if (entry.name === 'first-contentful-paint')
-				monitoringEntries.push({ location, fcp: entry.startTime } as VitalsEntry);
+				monitoringEntries.push({
+					vitals_type: 'fcp',
+					location,
+					value: entry.startTime
+				} as VitalsEntry);
 			if (entry.name === 'first-paint')
-				monitoringEntries.push({ location, fp: entry.startTime } as VitalsEntry);
+				monitoringEntries.push({
+					location,
+					vitals_type: 'fcp',
+					value: entry.startTime
+				} as VitalsEntry);
 		}
 	}
 
