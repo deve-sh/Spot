@@ -56,7 +56,7 @@ const mapPerformanceEntries = () => {
 		if (entry instanceof PerformancePaintTiming) {
 			if (entry.name === 'first-contentful-paint')
 				monitoringEntries.push({
-					vitals_type: 'fcp',
+					vitalsType: 'fcp',
 					type: 'vitals',
 					location,
 					value: entry.startTime
@@ -65,7 +65,7 @@ const mapPerformanceEntries = () => {
 				monitoringEntries.push({
 					location,
 					type: 'vitals',
-					vitals_type: 'fcp',
+					vitalsType: 'fcp',
 					value: entry.startTime
 				} as VitalsEntry);
 		}
