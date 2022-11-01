@@ -57,12 +57,14 @@ const mapPerformanceEntries = () => {
 			if (entry.name === 'first-contentful-paint')
 				monitoringEntries.push({
 					vitals_type: 'fcp',
+					type: 'vitals',
 					location,
 					value: entry.startTime
 				} as VitalsEntry);
 			if (entry.name === 'first-paint')
 				monitoringEntries.push({
 					location,
+					type: 'vitals',
 					vitals_type: 'fcp',
 					value: entry.startTime
 				} as VitalsEntry);
