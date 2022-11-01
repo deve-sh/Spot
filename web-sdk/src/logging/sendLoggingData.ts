@@ -1,6 +1,6 @@
 import type LogEntry from '../types/LogEntry';
 import { getInstance } from '../utils/instance';
-import responseHandler from '../utils/responseHandler';
+import send from '../utils/send';
 
 import getLoggingEndpoint from './getLoggingEndpoint';
 
@@ -13,15 +13,7 @@ const sendLoggingData = (logEntries: LogEntry[]) => {
 	const loggingEndpoint = getLoggingEndpoint() as string;
 	if (!loggingEndpoint) return;
 
-	return fetch(loggingEndpoint, {
-		body: JSON.stringify(logEntries),
-		credentials: 'include',
-		mode: 'cors',
-		method: 'POST',
-		headers: { 'content-type': 'application/json' }
-	})
-		.then(responseHandler)
-		.catch(() => null);
+	return send(loggingEndpoint, logEntries);
 };
 
 export default sendLoggingData;

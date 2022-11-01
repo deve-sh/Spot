@@ -18,11 +18,15 @@ class Spot {
 	public userDetails: UserDetails = defaultUserDetails;
 	public sessionId: string = '';
 	public canSendAPICalls: boolean = true;
+	public apiKey: string = '';
 
-	constructor(projectId: string, userDetails?: UserDetails) {
+	constructor(projectId: string, apiKey: string, userDetails?: UserDetails) {
 		if (getInstance()) return;
 
+		if (!projectId || !apiKey) throw new Error('Project ID and API Key are required.');
+
 		this.projectId = projectId;
+		this.apiKey = apiKey;
 		this.userDetails = userDetails || defaultUserDetails;
 
 		// Session ID Deduplication
@@ -42,12 +46,10 @@ class Spot {
 	}
 
 	sendEntries(entries: MonitoringEntry[]) {
-		if (!this.canSendAPICalls) return;
 		sendMonitoringData(entries);
 	}
 
 	sendLogs(logs: LogEntry[]) {
-		if (!this.canSendAPICalls) return;
 		sendLoggingData(logs);
 	}
 }
