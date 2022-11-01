@@ -10,6 +10,8 @@ import setSessionCookie from './session/setSessionCookie';
 
 import setupMonitoring from './monitoring/setupMonitoringInterval';
 import setupLogInterception from './logging/setupLogInterception';
+import sendLoggingData from './logging/sendLoggingData';
+import sendMonitoringData from './monitoring/sendMonitoringData';
 
 class Spot {
 	public projectId: string = '';
@@ -38,9 +40,13 @@ class Spot {
 		this.userDetails = userDetails;
 	}
 
-	sendEntries(entries: MonitoringEntry[]) {}
+	sendEntries(entries: MonitoringEntry[]) {
+		sendMonitoringData(entries);
+	}
 
-	sendLogs(logs: LogEntry[]) {}
+	sendLogs(logs: LogEntry[]) {
+		sendLoggingData(logs);
+	}
 }
 
 export default Spot;
