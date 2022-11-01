@@ -4,6 +4,8 @@ export type NetworkCallEntry = {
 	responseSize: number;
 	duration: number;
 	url: string;
+	timeToResponse: number;
+	startedAt: number;
 };
 
 export interface NavigationTypeEntry extends PerformanceNavigationTiming {

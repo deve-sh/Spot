@@ -33,7 +33,9 @@ const mapPerformanceEntries = () => {
 					bodySize: entry.encodedBodySize,
 					responseSize: entry.transferSize,
 					duration: entry.duration,
-					url: entry.name
+					url: entry.name.split('?')[0],
+					startedAt: entry.startTime + performance.timeOrigin,
+					timeToResponse: entry.responseEnd - entry.startTime
 				} as NetworkCallEntry);
 			}
 		}
