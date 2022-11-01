@@ -17,6 +17,7 @@ class Spot {
 	public projectId: string = '';
 	public userDetails: UserDetails = defaultUserDetails;
 	public sessionId: string = '';
+	public canSendAPICalls: boolean = true;
 
 	constructor(projectId: string, userDetails?: UserDetails) {
 		if (getInstance()) return;
@@ -41,10 +42,12 @@ class Spot {
 	}
 
 	sendEntries(entries: MonitoringEntry[]) {
+		if (!this.canSendAPICalls) return;
 		sendMonitoringData(entries);
 	}
 
 	sendLogs(logs: LogEntry[]) {
+		if (!this.canSendAPICalls) return;
 		sendLoggingData(logs);
 	}
 }

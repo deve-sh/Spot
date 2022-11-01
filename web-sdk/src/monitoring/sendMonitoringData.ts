@@ -1,5 +1,7 @@
-import MonitoringEntry from '../types/MonitoringEntry';
+import type MonitoringEntry from '../types/MonitoringEntry';
 import { getInstance } from '../utils/instance';
+import responseHandler from '../utils/responseHandler';
+
 import getMonitoringEndpoint from './getMonitoringEndpoint';
 
 const sendMonitoringData = (entries: MonitoringEntry[]) => {
@@ -17,7 +19,9 @@ const sendMonitoringData = (entries: MonitoringEntry[]) => {
 		mode: 'cors',
 		method: 'POST',
 		headers: { 'content-type': 'application/json' }
-	}).catch(() => null);
+	})
+		.then(responseHandler)
+		.catch(() => null);
 };
 
 export default sendMonitoringData;

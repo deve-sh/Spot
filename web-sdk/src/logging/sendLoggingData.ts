@@ -1,5 +1,7 @@
 import type LogEntry from '../types/LogEntry';
 import { getInstance } from '../utils/instance';
+import responseHandler from '../utils/responseHandler';
+
 import getLoggingEndpoint from './getLoggingEndpoint';
 
 const sendLoggingData = (logEntries: LogEntry[]) => {
@@ -17,7 +19,9 @@ const sendLoggingData = (logEntries: LogEntry[]) => {
 		mode: 'cors',
 		method: 'POST',
 		headers: { 'content-type': 'application/json' }
-	}).catch(() => null);
+	})
+		.then(responseHandler)
+		.catch(() => null);
 };
 
 export default sendLoggingData;
