@@ -8,6 +8,8 @@ export type LogFragment = {
 type LogEntry = {
 	severity: LogTypes;
 	fragments: LogFragment[];
+	at: number; // timestamp
+	sessionId: string;
 };
 
 export default LogEntry;

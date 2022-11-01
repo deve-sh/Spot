@@ -14,10 +14,15 @@ const processLogFragment = (logFragment: any): LogFragment => ({
 	value: typeof logFragment !== 'string' ? JSON.stringify(logFragment) : logFragment
 });
 
-const processLog = (logFragments: any[], severity: LogTypes): LogEntry => ({
-	fragments: logFragments.map(processLogFragment),
-	severity
-});
+const processLog = (logFragments: any[], severity: LogTypes): LogEntry => {
+	const { sessionId } = getInstance() || { sessionId: '' };
+	return {
+		fragments: logFragments.map(processLogFragment),
+		severity,
+		at: new Date().getTime(),
+		sessionId
+	};
+};
 
 const releaseLogs = () => {
 	// Send logs from log queue.

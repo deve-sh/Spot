@@ -1,4 +1,8 @@
-import type { NavigationTypeEntry, NetworkCallEntry, VitalsEntry } from '../types/MonitoringEntry';
+import MonitoringEntry, {
+	NavigationTypeEntry,
+	NetworkCallEntry,
+	VitalsEntry
+} from '../types/MonitoringEntry';
 
 import { getInstance } from '../utils/instance';
 import config from '../config';
@@ -8,12 +12,14 @@ let lastProcessedLogsTill = 0;
 const mapPerformanceEntries = () => {
 	// Performance API not supported
 	if (typeof globalThis.performance === 'undefined') return;
+	const instance = getInstance();
+	if (!instance) return;
 
 	const entries = globalThis.performance.getEntries();
 	if (!entries.length) return;
 
 	const remainingEntries = entries.slice(lastProcessedLogsTill, entries.length);
-	const monitoringEntries = [];
+	let monitoringEntries: MonitoringEntry[] = [];
 	const location = JSON.stringify({
 		...globalThis.location,
 		fullBasePath: globalThis.location.origin + globalThis.location.pathname
@@ -53,8 +59,13 @@ const mapPerformanceEntries = () => {
 
 	lastProcessedLogsTill = entries.length;
 
-	const instance = getInstance();
-	if (instance && monitoringEntries.length) instance.sendEntries(monitoringEntries); // Dispatch API call to send these entries to backend.
+	if (monitoringEntries.length) {
+		monitoringEntries = monitoringEntries.map((entry) => ({
+			...entry,
+			sessionId: instance.sessionId
+		}));
+		instance.sendEntries(monitoringEntries); // Dispatch API call to send these entries to backend.
+	}
 };
 
 export default mapPerformanceEntries;
