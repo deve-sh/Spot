@@ -2,8 +2,12 @@ import type MonitoringEntry from './types/MonitoringEntry';
 import type LogEntry from './types/LogEntry';
 import UserDetails, { defaultUserDetails } from './types/UserDetails';
 
-import getUniqueSessionId from './session/getUniqueSessionId';
 import { getInstance, setInstance } from './utils/instance';
+
+import getUniqueSessionId from './session/getUniqueSessionId';
+import getActiveSessionId from './session/getAlreadyActiveSessionId';
+import setSessionCookie from './session/setSessionCookie';
+
 import setupMonitoring from './monitoring/setupMonitoringInterval';
 import setupLogInterception from './logging/setupLogInterception';
 
@@ -17,7 +21,13 @@ class Spot {
 
 		this.projectId = projectId;
 		this.userDetails = userDetails || defaultUserDetails;
-		this.sessionId = getUniqueSessionId();
+
+		// Session ID Deduplication
+		const alreadyActiveSessionId = getActiveSessionId();
+		if (alreadyActiveSessionId) this.sessionId = alreadyActiveSessionId;
+		else this.sessionId = getUniqueSessionId();
+		setSessionCookie(this.sessionId);
+
 		setInstance(this); // Singleton for a single environment.
 
 		setupMonitoring();
