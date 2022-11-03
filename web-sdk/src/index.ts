@@ -4,9 +4,12 @@ import UserDetails, { defaultUserDetails } from './types/UserDetails';
 
 import { getInstance, setInstance } from './utils/instance';
 
+import send from './utils/send';
 import getUniqueSessionId from './session/getUniqueSessionId';
 import getActiveSessionId from './session/getAlreadyActiveSessionId';
 import setSessionCookie from './session/setSessionCookie';
+import getSessionEndpoint from './session/getSessionEndpoint';
+import getSessionIdentifyEndpoint from './session/getSessionIdentifyEndpoint';
 
 import setupMonitoring from './monitoring/setupMonitoringInterval';
 import setupLogInterception from './logging/setupLogInterception';
@@ -34,6 +37,7 @@ class Spot {
 		if (alreadyActiveSessionId) this.sessionId = alreadyActiveSessionId;
 		else this.sessionId = getUniqueSessionId();
 		setSessionCookie(this.sessionId);
+		send(getSessionEndpoint() as string, { url: window.location.href });
 
 		setInstance(this); // Singleton for a single environment.
 
@@ -43,6 +47,7 @@ class Spot {
 
 	identify(userDetails: UserDetails) {
 		this.userDetails = userDetails;
+		send(getSessionIdentifyEndpoint() as string, { url: window.location.href });
 	}
 
 	sendEntries(entries: MonitoringEntry[]) {
