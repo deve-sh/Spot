@@ -1,8 +1,5 @@
 const config = {
-	BACKEND_URL:
-		process.env.NODE_ENV !== 'development'
-			? 'https://spot-api.vercel.app'
-			: 'http://localhost:5432',
+	BACKEND_URL: 'http://localhost:5100',
 	MONITORING_DATA_ENDPOINT: 'web-monitoring',
 	LOG_DATA_ENDPOINT: 'web-logs',
 	MONITORING_INTERVAL: 4000,
