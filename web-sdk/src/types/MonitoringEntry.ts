@@ -16,7 +16,7 @@ export interface NavigationTypeEntry extends PerformanceNavigationTiming {
 }
 
 export interface VitalsEntry {
-	vitalsType: 'fcp' | 'fp';
+	vitalType: 'fcp' | 'fp' | 'fid';
 	value: number;
 	location: string; // JSON.stringify(window.location);
 	sessionId?: string;
