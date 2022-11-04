@@ -5,7 +5,7 @@ const getMonitoringEndpoint = () => {
 	const instance = getInstance();
 	if (!instance || !instance.projectId) return null;
 
-	return `${config.BACKEND_URL}/${instance.projectId}/${config.MONITORING_DATA_ENDPOINT}`;
+	return `${config.BACKEND_URL}/log/${instance.projectId}/${config.MONITORING_DATA_ENDPOINT}`;
 };
 
 export default getMonitoringEndpoint;
