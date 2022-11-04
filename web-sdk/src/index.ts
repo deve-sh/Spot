@@ -37,10 +37,9 @@ class Spot {
 		if (alreadyActiveSessionId) this.sessionId = alreadyActiveSessionId;
 		else this.sessionId = getUniqueSessionId();
 		setSessionCookie(this.sessionId);
-		send(getSessionEndpoint() as string, { url: window.location.href });
-
 		setInstance(this); // Singleton for a single environment.
 
+		send(getSessionEndpoint() as string, { url: window.location.href });
 		setupMonitoring();
 		setupLogInterception();
 	}
