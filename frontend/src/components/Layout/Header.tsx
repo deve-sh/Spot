@@ -1,18 +1,16 @@
 import { Box } from '@chakra-ui/react';
-import styled from '@emotion/styled';
 import Container from './Container';
 
-const StyledHeader = styled(Box)`
-	padding: 1rem;
-	border-bottom: 0.1rem solid var(--grey);
-	color: var(--primary);
-	background: var(--white);
-`;
-
 const Header = () => (
-	<StyledHeader>
+	<Box
+		borderBottomColor="gray.200"
+		borderBottomWidth="1.125px"
+		background="white"
+		color="black"
+		padding="4"
+	>
 		<Container>Header</Container>
-	</StyledHeader>
+	</Box>
 );
 
 export default Header;
