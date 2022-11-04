@@ -10,7 +10,6 @@ const send = (endpoint: string, data?: any) => {
 
 	return fetch(endpoint, {
 		body: JSON.stringify(data),
-		credentials: 'include',
 		mode: 'cors',
 		method: 'POST',
 		headers: { 'content-type': 'application/json', authorization: `Key ${apiKey}` }
