@@ -48,11 +48,18 @@ const interceptLogs = () => {
 	alreadyInterceptedLogging = true;
 
 	const originalConsoleLog = console.log;
+	const originalConsoleInfo = console.info;
 	const originalConsoleWarn = console.warn;
 	const originalConsoleError = console.error;
 
 	console.log = function (...logFragments) {
 		originalConsoleLog(...logFragments);
+		logsQueue.push(processLog(logFragments, 'info'));
+		setLogReleaseTimer();
+	};
+
+	console.info = function (...logFragments) {
+		originalConsoleInfo(...logFragments);
 		logsQueue.push(processLog(logFragments, 'info'));
 		setLogReleaseTimer();
 	};
