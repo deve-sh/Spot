@@ -1,5 +1,5 @@
 const useProjectAuth = () => ({
-	apiKey: import.meta.env.PUBLIC_API_KEY
+	apiKey: process.env.PUBLIC_API_KEY
 });
 
 export default useProjectAuth;

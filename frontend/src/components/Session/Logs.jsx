@@ -1,5 +1,3 @@
-import React from 'react';
-
 import useFetch from '../../hooks/useFetch';
 import { getSessionLogsAPIEndpoint } from '../../utils/endpoints/session';
 

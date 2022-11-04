@@ -1,7 +1,5 @@
-import React from 'react';
-
-import useFetch from '../../hooks/useFetch';
-import { getSessionAPIEndpoint } from '../../utils/endpoints/session';
+import useFetch from '../../../../frontend-dashboard/src/hooks/useFetch';
+import { getSessionAPIEndpoint } from '../../../../frontend-dashboard/src/utils/endpoints/session';
 
 const SessionInfo = ({ projectId, sessionId }) => {
 	const { data, error } = useFetch(getSessionAPIEndpoint({ projectId, sessionId }));
