@@ -6,7 +6,8 @@
 	"scripts": {
 		"compile": "tsc",
 		"bundle": "webpack",
-		"build": "npm run compile && npm run bundle"
+		"build": "npm run compile && npm run bundle",
+		"pub": "node ./scripts/publish.js"
 	},
 	"devDependencies": {
 		"eslint": "^8.0.0",
