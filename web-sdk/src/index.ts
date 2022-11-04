@@ -46,7 +46,10 @@ class Spot {
 
 	identify(userDetails: UserDetails) {
 		this.userDetails = userDetails;
-		send(getSessionIdentifyEndpoint() as string, { url: window.location.href });
+		send(getSessionIdentifyEndpoint() as string, {
+			url: window.location.href,
+			userInfo: this.userDetails
+		});
 	}
 
 	sendEntries(entries: MonitoringEntry[]) {
