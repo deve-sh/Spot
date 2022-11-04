@@ -1,22 +1,38 @@
+import { useState, useMemo } from 'react';
 import { useRouter } from 'next/router';
 
 import SessionInfo from 'src/components/Session/SessionInfo';
 import SessionLogs from 'src/components/Session/SessionLogs';
 
+import FullPageSkeleton from 'src/components/Layout/FullPageSkeleton';
+
 const SessionPage = () => {
-	const router = useRouter();
-	console.log(router.query);
 	const {
 		query: { projectId, sessionId }
 	} = useRouter();
+	const [nSessionLogsPages, setnSessionLogsPages] = useState(1);
+
+	const logsPages = useMemo(() => {
+		const pages = [];
+		for (let pageIndex = 0; pageIndex < nSessionLogsPages; pageIndex++) {
+			pages.push(
+				<SessionLogs
+					projectId={projectId as string}
+					sessionId={sessionId as string}
+					page={pageIndex}
+				/>
+			);
+		}
+		return pages;
+	}, [nSessionLogsPages, sessionId, projectId]);
 
 	return projectId && sessionId ? (
 		<>
-			<SessionInfo projectId={projectId} sessionId={sessionId} />
-			<SessionLogs projectId={projectId} sessionId={sessionId} />
+			<SessionInfo projectId={projectId as string} sessionId={sessionId as string} />
+			{logsPages}
 		</>
 	) : (
-		''
+		<FullPageSkeleton />
 	);
 };
 

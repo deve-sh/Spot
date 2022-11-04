@@ -1,7 +1,12 @@
 import useFetch from 'src/hooks/useFetch';
 import { getSessionAPIEndpoint } from 'src/utils/endpoints/session';
 
-const SessionInfo = ({ projectId, sessionId }) => {
+interface Props {
+	sessionId: string;
+	projectId: string;
+}
+
+const SessionInfo = ({ projectId, sessionId }: Props) => {
 	const { data, error } = useFetch(getSessionAPIEndpoint({ projectId, sessionId }));
 	return <></>;
 };
