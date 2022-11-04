@@ -1,5 +1,5 @@
-import useFetch from 'src/hooks/useFetch';
-import { getSessionLogsAPIEndpoint } from 'src/utils/endpoints/session';
+import useFetch from 'hooks/useFetch';
+import { getSessionLogsAPIEndpoint } from 'utils/endpoints/session';
 
 interface Props {
 	sessionId: string;

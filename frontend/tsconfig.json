@@ -5,9 +5,8 @@
 		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": true,
-		"paths": {
-			"src/*": ["./src/*"]
-		},
+		"baseUrl": "./src",
+		"paths": {},
 		"forceConsistentCasingInFileNames": true,
 		"noEmit": true,
 		"esModuleInterop": true,

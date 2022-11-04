@@ -1,10 +1,10 @@
 import { useState, useMemo } from 'react';
 import { useRouter } from 'next/router';
 
-import SessionInfo from 'src/components/Session/SessionInfo';
-import SessionLogs from 'src/components/Session/SessionLogs';
+import SessionInfo from 'components/Session/SessionInfo';
+import SessionLogs from 'components/Session/SessionLogs';
 
-import FullPageSkeleton from 'src/components/Layout/FullPageSkeleton';
+import FullPageSkeleton from 'components/Layout/FullPageSkeleton';
 
 const SessionPage = () => {
 	const {
