@@ -1,0 +1,11 @@
+---
+import Layout from '../../../../../layouts/Layout.astro';
+
+export interface Props {}
+
+const { sessionId } = Astro.params;
+---
+
+<Layout title={`Spot - Session (${sessionId})`}>
+	<main></main>
+</Layout>
