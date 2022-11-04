@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../../../layouts/Layout.astro';
 import Logs from '../../../../../components/Session/Logs';
+import SessionInfo from '../../../../../components/Session/SessionInfo';
 
 export interface Props {}
 
@@ -8,5 +9,6 @@ const { sessionId, projectId } = Astro.params;
 ---
 
 <Layout title={`Spot - Session (${sessionId})`}>
+	<SessionInfo client:load client:load projectId={projectId} sessionId={sessionId} />
 	<Logs client:load projectId={projectId} sessionId={sessionId} />
 </Layout>
