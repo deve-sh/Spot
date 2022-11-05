@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
-import { Flex, Heading, Icon } from '@chakra-ui/react';
+import { Flex, Icon } from '@chakra-ui/react';
 import { GrDocumentPerformance } from 'react-icons/gr';
 
+import SectionHeading from 'components/SectionHeading';
 import Container from 'components/Layout/Container';
 import Skeleton from 'components/Layout/GenericSkeleton';
 
@@ -27,13 +28,7 @@ const SessionVitals = () => {
 		<Container paddingBottom="2" paddingTop="8">
 			{data ? (
 				<>
-					<Heading
-						color="gray.500"
-						size="md"
-						marginBottom="2"
-						display="flex"
-						alignItems="center"
-					>
+					<SectionHeading>
 						<Icon
 							as={GrDocumentPerformance}
 							color="gray.500"
@@ -42,7 +37,7 @@ const SessionVitals = () => {
 							marginRight="2"
 						/>{' '}
 						Session Vitals
-					</Heading>
+					</SectionHeading>
 					<Flex flexWrap="wrap" color="gray.600" gap="6">
 						{vitals}
 					</Flex>

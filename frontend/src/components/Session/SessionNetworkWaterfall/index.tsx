@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from 'react';
 import styled from '@emotion/styled';
-import { Heading, Icon } from '@chakra-ui/react';
+import { Icon } from '@chakra-ui/react';
 
 import Head from 'next/head';
 import Script from 'next/script';
@@ -8,6 +8,7 @@ import Script from 'next/script';
 import { MdWaterfallChart } from 'react-icons/md';
 
 import Container from 'components/Layout/Container';
+import SectionHeading from 'components/SectionHeading';
 import useSessionNetworkCalls from './useSessionNetworkCalls';
 
 const WaterfallDiv = styled(Container)`
@@ -95,13 +96,7 @@ const SessionNetworkWaterfall = () => {
 			{data ? (
 				<>
 					<Container>
-						<Heading
-							color="gray.500"
-							size="md"
-							marginBottom="2"
-							display="flex"
-							alignItems="center"
-						>
+						<SectionHeading>
 							<Icon
 								as={MdWaterfallChart}
 								color="orange.500"
@@ -110,7 +105,7 @@ const SessionNetworkWaterfall = () => {
 								marginRight="1"
 							/>{' '}
 							Network Calls Waterfall
-						</Heading>
+						</SectionHeading>
 					</Container>
 					<WaterfallDiv
 						id="gantt-ref"
