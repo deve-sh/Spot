@@ -5,6 +5,7 @@ import SessionInfo from 'components/Session/SessionInfo';
 import SessionLogs from 'components/Session/SessionLogs';
 
 import FullPageSkeleton from 'components/Layout/FullPageSkeleton';
+import SEO from 'components/SEO';
 
 const SessionPage = () => {
 	const {
@@ -21,6 +22,7 @@ const SessionPage = () => {
 
 	return projectId && sessionId ? (
 		<>
+			<SEO title={`Spot | Session (${sessionId})`} />
 			<SessionInfo />
 			{logsPages}
 		</>
