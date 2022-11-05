@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { useRouter } from 'next/router';
 
 import SessionInfo from 'components/Session/SessionInfo';
@@ -14,12 +14,24 @@ const SessionPage = () => {
 	const {
 		query: { projectId, sessionId }
 	} = useRouter();
-	const [nSessionLogsPages, setnSessionLogsPages] = useState(1);
 
+	const [nSessionLogsPages, setnSessionLogsPages] = useState(1);
+	const [canLoadMoreLogs, setCanLoadMoreLogs] = useState(true);
+
+	const onLastLogsPageData = useCallback((data: any) => {
+		if (!data?.logs?.length || data?.error) return setCanLoadMoreLogs(false);
+	}, []);
 	const logsPages = useMemo(() => {
 		const pages = [];
 		for (let pageIndex = 0; pageIndex < nSessionLogsPages; pageIndex++)
-			pages.push(<SessionLogs page={pageIndex} key={pageIndex} />);
+			pages.push(
+				<SessionLogs
+					page={pageIndex}
+					key={pageIndex}
+					// Last session log container should notify the parent component on receiving data if there's more to be fetched.
+					onData={pageIndex === nSessionLogsPages - 1 ? onLastLogsPageData : undefined}
+				/>
+			);
 		return pages;
 	}, [nSessionLogsPages, sessionId, projectId]);
 

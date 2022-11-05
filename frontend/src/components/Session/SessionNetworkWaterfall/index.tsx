@@ -104,7 +104,7 @@ const SessionNetworkWaterfall = () => {
 								width={6}
 								marginRight="1"
 							/>{' '}
-							Network Calls Waterfall
+							API Calls Waterfall
 						</SectionHeading>
 					</Container>
 					<WaterfallDiv
