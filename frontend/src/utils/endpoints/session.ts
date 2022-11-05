@@ -15,3 +15,6 @@ export const getSessionLogsAPIEndpoint = ({ projectId, sessionId, offset = 0 }: 
 
 export const getSessionNetworkCallsEndpoint = ({ projectId, sessionId }: ProjectAndSessionProp) =>
 	`${process.env.NEXT_PUBLIC_API_URL}/session/${projectId}/${sessionId}/network-calls`;
+
+export const getSessionVitalsEndpoint = ({ projectId, sessionId }: ProjectAndSessionProp) =>
+	`${process.env.NEXT_PUBLIC_API_URL}/session/${projectId}/${sessionId}/vitals`;

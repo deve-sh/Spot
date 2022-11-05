@@ -9,7 +9,7 @@ interface Props {
 
 const SessionLogs = ({ page = 0 }: Props) => {
 	const { data, error } = useSessionLogs({ offset: page * 25 });
-	return <Container padding="4">{data || error ? <></> : <Skeleton height="50vh" />}</Container>;
+	return <Container paddingY="4">{data || error ? <></> : <Skeleton height="50vh" />}</Container>;
 };
 
 export default SessionLogs;
