@@ -21,7 +21,7 @@ const SessionLogs = ({ page = 0, onData }: Props) => {
 	return data?.logs ? (
 		data.logs.map((log: LogType) => <Log key={log.id} log={log} />)
 	) : (
-		<Skeleton height="50vh" />
+		<Skeleton height="50vh" borderRadius="none" />
 	);
 };
 
