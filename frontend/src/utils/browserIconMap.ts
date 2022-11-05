@@ -1,7 +1,7 @@
 import { FaFirefox, FaChrome, FaEdge, FaSafari } from 'react-icons/fa';
 import { GoBrowser } from 'react-icons/go';
 
-const browserImageMap: Record<string, any> = {
+const browserIconMap: Record<string, any> = {
 	Chrome: FaChrome,
 	Firefox: FaFirefox,
 	Edge: FaEdge,
@@ -9,4 +9,4 @@ const browserImageMap: Record<string, any> = {
 	default: GoBrowser
 };
 
-export default browserImageMap;
+export default browserIconMap;
