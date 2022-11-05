@@ -16,6 +16,23 @@ const GlobalStyles = () => (
 				color: var(--primary);
 				font-family: sans-serif;
 			}
+
+			::-webkit-scrollbar {
+				width: 0.5rem;
+			}
+			
+			::-webkit-scrollbar-track {
+				background: #efefef;
+			}
+			
+			::-webkit-scrollbar-thumb {
+				background: #cfcfcf;
+				border-radius: 5rem;
+			}
+			
+			::-webkit-scrollbar-thumb:hover {
+				background: #afafaf;
+			}
 		`}
 	</style>
 );
