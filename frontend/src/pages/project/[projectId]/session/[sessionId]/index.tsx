@@ -14,21 +14,14 @@ const SessionPage = () => {
 
 	const logsPages = useMemo(() => {
 		const pages = [];
-		for (let pageIndex = 0; pageIndex < nSessionLogsPages; pageIndex++) {
-			pages.push(
-				<SessionLogs
-					projectId={projectId as string}
-					sessionId={sessionId as string}
-					page={pageIndex}
-				/>
-			);
-		}
+		for (let pageIndex = 0; pageIndex < nSessionLogsPages; pageIndex++)
+			pages.push(<SessionLogs page={pageIndex} key={pageIndex} />);
 		return pages;
 	}, [nSessionLogsPages, sessionId, projectId]);
 
 	return projectId && sessionId ? (
 		<>
-			<SessionInfo projectId={projectId as string} sessionId={sessionId as string} />
+			<SessionInfo />
 			{logsPages}
 		</>
 	) : (

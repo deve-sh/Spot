@@ -1,21 +1,15 @@
 import styled from '@emotion/styled';
 import { Box, Flex } from '@chakra-ui/react';
 
-import useFetch from 'hooks/useFetch';
-import { getSessionAPIEndpoint } from 'utils/endpoints/session';
-
 import Container from 'components/Layout/Container';
 import Skeleton from 'components/Layout/GenericSkeleton';
 
 // Sub-components
+import useSessionInfo from './useSessionInfo';
 import SessionAvatar from './SessionAvatar';
 import SessionPrimaryInfo from './SessionPrimaryInfo';
 import SessionPlatformInfo from './SessionPlatformInfo';
-
-interface Props {
-	sessionId: string;
-	projectId: string;
-}
+import SessionStartedFrom from './SessionStartedFrom';
 
 const SessionInfoContainer = styled(Box)``;
 
@@ -26,20 +20,27 @@ const SessionInfoFlex = styled(Flex)`
 	}
 `;
 
-const SessionInfo = ({ projectId, sessionId }: Props) => {
-	const { data } = useFetch(getSessionAPIEndpoint({ projectId, sessionId }));
-
-	console.log(data);
+const SessionInfo = () => {
+	const { data } = useSessionInfo();
 
 	return (
-		<Container padding="4" minHeight="30vh">
+		<Container minHeight="30vh" paddingTop="6">
 			{data?.session ? (
-				<SessionInfoContainer borderWidth="1px" borderRadius="lg" padding="6">
-					<SessionInfoFlex alignItems="center">
+				<SessionInfoContainer padding="0">
+					<SessionInfoFlex
+						padding="4"
+						borderWidth="1px"
+						borderRadius="lg"
+						borderBottomLeftRadius="0"
+						borderBottomRightRadius="0"
+						borderBottomWidth="0"
+						alignItems="center"
+					>
 						<SessionAvatar />
 						<SessionPrimaryInfo />
 						<SessionPlatformInfo />
 					</SessionInfoFlex>
+					<SessionStartedFrom />
 				</SessionInfoContainer>
 			) : (
 				<Skeleton />

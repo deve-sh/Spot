@@ -1,4 +1,4 @@
-interface ProjectAndSessionProp {
+export interface ProjectAndSessionProp {
 	projectId: string;
 	sessionId: string;
 }
@@ -6,7 +6,7 @@ interface ProjectAndSessionProp {
 export const getSessionAPIEndpoint = ({ projectId, sessionId }: ProjectAndSessionProp) =>
 	`${process.env.NEXT_PUBLIC_API_URL}/session/${projectId}/${sessionId}`;
 
-interface LogsProps extends ProjectAndSessionProp {
+export interface LogsProps extends ProjectAndSessionProp {
 	offset: number;
 }
 
