@@ -110,7 +110,7 @@ const SessionNetworkWaterfall = () => {
 					<WaterfallDiv
 						id="gantt-ref"
 						maxHeight="50vh"
-						borderWidth="0.0125rem"
+						borderWidth="1px"
 						marginBottom="4"
 					/>
 				</>
