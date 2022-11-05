@@ -22,14 +22,14 @@ const useFetch = (key: string | null | undefined, options: UseFetchOptions = {})
 			fetcher(key, {
 				headers: options.headers || { authorization: `Key ${projectAuth.apiKey}` }
 			}),
-		[key, projectAuth?.apiKey]
+		[key, projectAuth?.apiKey, options]
 	);
 
 	return useSWR(key, fetch, {
 		revalidateOnMount: options.revalidateOnMount || true,
 		revalidateOnFocus: options.revalidateOnFocus || false,
 		revalidateIfStale: options.revalidateIfStale || true,
-		fallback: options.fallback,
+		fallbackData: options.fallback || undefined,
 		dedupingInterval: options.dedupingInterval || 2000,
 		shouldRetryOnError: options.shouldRetryOnError || false,
 		errorRetryCount: options.errorRetryCount || 0
