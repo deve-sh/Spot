@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
-import { Badge, Box, Flex } from '@chakra-ui/react';
+import { Badge, Box, Flex, Tooltip } from '@chakra-ui/react';
 
 import type { LogSeverity, LogType } from 'types/Log';
 
@@ -36,31 +36,33 @@ const Log = (props: LogProps) => {
 	const [expanded, setExpanded] = useState(false);
 
 	return (
-		<LogRow
-			gap="4"
-			borderBottom="1px"
-			paddingY="3"
-			borderColor="gray.200"
-			whiteSpace={expanded ? 'normal' : 'nowrap'}
-			maxWidth="100%"
-			overflowX="scroll"
-			cursor="pointer"
-			onClick={() => setExpanded((exp) => !exp)}
-			color="gray.600"
-		>
-			<LogSeverity paddingLeft="4">
-				<Badge colorScheme={getLogSeverityColorScheme(props.log.severity)}>
-					{props.log.severity}
-				</Badge>
-			</LogSeverity>
-			<Flex gap="3">
-				{props.log.fragments.map((fragment, index) => (
-					<Box key={index} title={fragment.value} minWidth="fit-content">
-						{fragment.value}
-					</Box>
-				))}
-			</Flex>
-		</LogRow>
+		<Tooltip label={new Date(props.log.log_time).toString()}>
+			<LogRow
+				gap="4"
+				borderBottom="1px"
+				paddingY="3"
+				borderColor="gray.200"
+				whiteSpace={expanded ? 'normal' : 'nowrap'}
+				maxWidth="100%"
+				overflowX="scroll"
+				cursor="pointer"
+				onClick={() => setExpanded((exp) => !exp)}
+				color="gray.600"
+			>
+				<LogSeverity paddingLeft="4">
+					<Badge colorScheme={getLogSeverityColorScheme(props.log.severity)}>
+						{props.log.severity}
+					</Badge>
+				</LogSeverity>
+				<Flex gap="3">
+					{props.log.fragments.map((fragment, index) => (
+						<Box key={index} title={fragment.value} minWidth="fit-content">
+							{fragment.value}
+						</Box>
+					))}
+				</Flex>
+			</LogRow>
+		</Tooltip>
 	);
 };
 
