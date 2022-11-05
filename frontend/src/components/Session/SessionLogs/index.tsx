@@ -19,6 +19,7 @@ const SessionLogsContainer = () => {
 
 	const onLastLogsPageData = useCallback((data: any) => {
 		if (!data?.logs?.length || data?.error) return setCanLoadMoreLogs(false);
+		else return setCanLoadMoreLogs(true);
 	}, []);
 
 	const logsPages = useMemo(() => {
