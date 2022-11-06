@@ -9,6 +9,7 @@ const SignInWithGitHub = () => (
 		_focus={{ backgroundColor: 'blackAlpha.800' }}
 		_hover={{ backgroundColor: 'blackAlpha.800' }}
 		color="white"
+		title="Sign In With GitHub"
 		paddingY="6"
 		alignItems="center"
 		letterSpacing="wide"
