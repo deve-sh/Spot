@@ -1,9 +1,25 @@
 import { useEffect } from 'react';
-import { onAuthStateChanged, signInWithGitHub } from 'API/auth';
+import { onAuthStateChanged } from 'API/auth';
+import useAuthStore from 'store/auth';
 
 const useAuthListener = () => {
+	const { setUser, setToken } = useAuthStore();
+
 	useEffect(() => {
-		onAuthStateChanged();
+		const {
+			data: { subscription }
+		} = onAuthStateChanged((event, session) => {
+			if (event === 'SIGNED_IN') {
+				setUser(session?.user);
+				setToken(session?.access_token || null);
+			}
+			if (event === 'SIGNED_OUT') {
+				setUser(null);
+				setToken(null);
+			}
+		});
+
+		return subscription.unsubscribe;
 	}, []);
 };
 

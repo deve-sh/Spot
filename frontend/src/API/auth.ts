@@ -1,3 +1,4 @@
+import type { AuthChangeEvent, Session } from '@supabase/supabase-js';
 import supabase from './supabase';
 
 export const signInWithGitHub = () => {
@@ -6,6 +7,8 @@ export const signInWithGitHub = () => {
 	});
 };
 
-export const onAuthStateChanged = () => {
-	return supabase.auth.onAuthStateChange(console.log);
+export const onAuthStateChanged = (
+	callback: (event: AuthChangeEvent, session: Session | null) => void
+) => {
+	return supabase.auth.onAuthStateChange(callback);
 };
