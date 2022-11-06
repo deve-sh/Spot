@@ -1,5 +1,7 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import Container from './Container';
+
+import SignInWithGitHub from './SignInWithGitHub';
 
 const Header = () => (
 	<Box
@@ -7,9 +9,14 @@ const Header = () => (
 		borderBottomWidth="1.125px"
 		background="white"
 		color="black"
-		padding="4"
+		padding="2"
 	>
-		<Container>Header</Container>
+		<Container display="flex">
+			<Box flex="1.33"></Box>
+			<Flex flex="1" justifyContent="flex-end">
+				<SignInWithGitHub />
+			</Flex>
+		</Container>
 	</Box>
 );
 
