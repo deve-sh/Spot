@@ -1,3 +1,16 @@
+export type PageResourcesEntry = {
+	type: 'page-resource';
+	resourceType: 'script' | 'link' | 'img';
+	bodySize: number;
+	responseSize: number;
+	duration: number;
+	url: string;
+	timeToResponse: number;
+	startedAt: number;
+	totalWaitingTime: number;
+	sessionId?: string;
+};
+
 export type NetworkCallEntry = {
 	type: 'network-call';
 	bodySize: number;
@@ -6,6 +19,7 @@ export type NetworkCallEntry = {
 	url: string;
 	timeToResponse: number;
 	startedAt: number;
+	totalWaitingTime: number;
 	sessionId?: string;
 };
 
@@ -23,6 +37,6 @@ export interface VitalsEntry {
 	type: 'vitals';
 }
 
-type MonitoringEntry = NetworkCallEntry | NavigationTypeEntry | VitalsEntry;
+type MonitoringEntry = NetworkCallEntry | NavigationTypeEntry | VitalsEntry | PageResourcesEntry;
 
 export default MonitoringEntry;

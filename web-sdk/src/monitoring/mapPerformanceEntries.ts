@@ -1,7 +1,8 @@
 import MonitoringEntry, {
-	NavigationTypeEntry,
-	NetworkCallEntry,
-	VitalsEntry
+	type NavigationTypeEntry,
+	type NetworkCallEntry,
+	type PageResourcesEntry,
+	type VitalsEntry
 } from '../types/MonitoringEntry';
 
 import { getInstance } from '../utils/instance';
@@ -41,8 +42,26 @@ const mapPerformanceEntries = () => {
 					duration: entry.duration,
 					url: entry.name.split('?')[0],
 					startedAt: entry.startTime + performance.timeOrigin,
-					timeToResponse: entry.responseEnd - entry.startTime
+					totalWaitingTime: Math.abs(entry.fetchStart - entry.startTime),
+					timeToResponse: entry.responseEnd - entry.requestStart
 				} as NetworkCallEntry);
+			}
+			if (
+				['script', 'img', 'link'].includes(entry.initiatorType) &&
+				!entry.name.includes(config.BACKEND_URL)
+			) {
+				// Network/API Calls
+				monitoringEntries.push({
+					type: 'page-resource',
+					resourceType: entry.initiatorType,
+					bodySize: entry.encodedBodySize,
+					responseSize: entry.transferSize,
+					duration: entry.duration,
+					url: entry.name.split('?')[0],
+					startedAt: entry.startTime + performance.timeOrigin,
+					totalWaitingTime: Math.abs(entry.fetchStart - entry.startTime),
+					timeToResponse: entry.responseEnd - entry.requestStart
+				} as PageResourcesEntry);
 			}
 		}
 		if (entry instanceof PerformanceNavigationTiming) {
