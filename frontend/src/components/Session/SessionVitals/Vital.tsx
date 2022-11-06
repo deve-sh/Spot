@@ -15,6 +15,8 @@ const vitalsNameMapper = (name: string) => {
 	if (name === 'loadEventEnd') return 'Load Event Complete';
 	if (name === 'domInteractive') return 'domInteractive';
 	if (name === 'transferSize') return 'Transfer Size';
+	if (name === 'averageCallDuration') return 'Average Request Duration';
+	if (name === 'nRequests') return 'Number of API Calls';
 };
 
 const vitalsValueMapper = (name: string, value: number) => {
@@ -26,6 +28,7 @@ const vitalsValueMapper = (name: string, value: number) => {
 	if (name === 'fp') return Number(value / 1000).toFixed(2) + 's';
 	if (name === 'loadEventEnd') return Number(value / 1000).toFixed(2) + 's';
 	if (name === 'transferSize') return Number(value / 1000).toFixed(2) + ' MB';
+	if (name === 'averageCallDuration') return Number(value).toFixed(2) + 'ms';
 };
 
 const vitalExplainer = (name: string) => {

@@ -11,6 +11,7 @@ import useSessionVitals from './useSessionVitals';
 
 const SessionVitals = () => {
 	const { data } = useSessionVitals();
+
 	const vitals = useMemo(() => {
 		if (!data?.vitals) return null;
 		let vitalKeys = Object.keys(data.vitals);
