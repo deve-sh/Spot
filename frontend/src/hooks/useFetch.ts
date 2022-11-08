@@ -12,6 +12,7 @@ interface UseFetchOptions {
 	dedupingInterval?: number;
 	errorRetryCount?: number;
 	fallback?: any;
+	fetcher?: any;
 }
 
 const useFetch = (key: string | null | undefined, options: UseFetchOptions = {}) => {
@@ -27,7 +28,7 @@ const useFetch = (key: string | null | undefined, options: UseFetchOptions = {})
 		[key, userToken, options]
 	);
 
-	return useSWR(key, fetch, {
+	return useSWR(key, options.fetcher || fetch, {
 		revalidateOnMount: options.revalidateOnMount || true,
 		revalidateOnFocus: options.revalidateOnFocus || false,
 		revalidateIfStale: options.revalidateIfStale || true,
