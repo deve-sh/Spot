@@ -23,7 +23,7 @@ const UserOptions = () => {
 				title="Logout"
 				size="md"
 				bg="transparent"
-				icon={<Icon as={MdLogout} size="sm" />}
+				icon={<Icon as={MdLogout} height={5} width={5} />}
 				onClick={signOut}
 			/>
 		</Flex>

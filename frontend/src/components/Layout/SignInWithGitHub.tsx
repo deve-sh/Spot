@@ -4,17 +4,15 @@ import { signInWithGitHub } from 'API/auth';
 
 const SignInWithGitHub = () => (
 	<Button
-		backgroundColor="blackAlpha.800"
 		borderRadius="md"
-		_focus={{ backgroundColor: 'blackAlpha.800' }}
-		_hover={{ backgroundColor: 'blackAlpha.800' }}
-		color="white"
+		variant="outline"
+		borderColor="#171515"
+		color="#171515"
+		borderWidth="2px"
 		title="Sign In With GitHub"
-		paddingY="6"
 		alignItems="center"
 		letterSpacing="wide"
-		boxShadow="md"
-		leftIcon={<Icon as={FaGithub} height={6} width={6} color="white" marginRight="1" />}
+		leftIcon={<Icon as={FaGithub} height={6} width={6} color="#171515" marginRight="1" />}
 		onClick={signInWithGitHub}
 	>
 		Sign In
