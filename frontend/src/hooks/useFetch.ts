@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import useSWR from 'swr';
 import fetcher from '../utils/fetch';
-import useProjectAuth from './useProjectAuth';
+import useAccessToken from './auth/useAccessToken';
 
 interface UseFetchOptions {
 	headers?: Record<string, any>;
@@ -15,14 +15,16 @@ interface UseFetchOptions {
 }
 
 const useFetch = (key: string | null | undefined, options: UseFetchOptions = {}) => {
-	const projectAuth = useProjectAuth();
+	const userToken = useAccessToken();
 
 	const fetch = useCallback(
 		(key: string): any =>
 			fetcher(key, {
-				headers: options.headers || { authorization: `Key ${projectAuth.apiKey}` }
+				headers: options.headers || {
+					authorization: userToken ? `Bearer ${userToken}` : ''
+				}
 			}),
-		[key, projectAuth?.apiKey, options]
+		[key, userToken, options]
 	);
 
 	return useSWR(key, fetch, {

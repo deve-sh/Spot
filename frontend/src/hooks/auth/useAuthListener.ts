@@ -9,13 +9,15 @@ const useAuthListener = () => {
 		const {
 			data: { subscription }
 		} = onAuthStateChanged((event, session) => {
-			if (event === 'SIGNED_IN') {
-				setUser(session?.user);
-				setToken(session?.access_token || null);
-			}
 			if (event === 'SIGNED_OUT') {
 				setUser(null);
 				setToken(null);
+				return;
+			}
+
+			if (event === 'SIGNED_IN') {
+				setUser(session?.user);
+				setToken(session?.access_token || null);
 			}
 		});
 
