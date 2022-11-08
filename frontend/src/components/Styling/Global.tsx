@@ -14,7 +14,7 @@ const GlobalStyles = () => (
 				line-height: 1.61;
 				background: var(--white);
 				color: var(--primary);
-				font-family: sans-serif;
+				font-family: 'Nunito Sans', sans-serif;
 			}
 
 			::-webkit-scrollbar {
