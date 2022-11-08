@@ -8,7 +8,8 @@ const fetcherGenerator = (user: User) => async () => {
 	const { data, error } = await supabase
 		.from('projects')
 		.select('*, projects_members(role, added_at)')
-		.eq('projects_members.member', user.id);
+		.eq('projects_members.member', user.id)
+		.limit(100);
 	if (error) throw error;
 	return data;
 };
