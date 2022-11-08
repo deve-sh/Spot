@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { Stat, StatLabel, StatNumber, Tooltip } from '@chakra-ui/react';
+import styled from '@emotion/styled';
 
 interface VitalProps {
 	vitalName: string;
@@ -29,6 +30,7 @@ const vitalsValueMapper = (name: string, value: number) => {
 	if (name === 'loadEventEnd') return Number(value / 1000).toFixed(2) + 's';
 	if (name === 'transferSize') return Number(value / 1000).toFixed(2) + ' MB';
 	if (name === 'averageCallDuration') return Number(value).toFixed(2) + 'ms';
+	return value;
 };
 
 const vitalExplainer = (name: string) => {
@@ -39,12 +41,19 @@ const vitalExplainer = (name: string) => {
 	if (name === 'fid') return 'Measures the time from when a user first interacts with a page';
 };
 
+const VitalStat = styled(Stat)`
+	min-width: 25%;
+	@media only screen and (max-width: 768px) {
+		min-width: 46%;
+	}
+`;
+
 const Vital = (props: VitalProps) => {
 	const vitalsExplainingText = useMemo(() => vitalExplainer(props.vitalName), [props.vitalName]);
 	const Parent = vitalsExplainingText ? Tooltip : React.Fragment;
 	return (
 		<Parent label={vitalsExplainingText}>
-			<Stat
+			<VitalStat
 				minWidth="25%"
 				borderRadius="lg"
 				borderWidth="1.25px"
@@ -53,7 +62,7 @@ const Vital = (props: VitalProps) => {
 			>
 				<StatLabel>{vitalsNameMapper(props.vitalName)}</StatLabel>
 				<StatNumber>{vitalsValueMapper(props.vitalName, props.value)}</StatNumber>
-			</Stat>
+			</VitalStat>
 		</Parent>
 	);
 };
