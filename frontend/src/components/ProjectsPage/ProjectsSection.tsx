@@ -9,15 +9,14 @@ const ProjectsSection = () => {
 	const { data, error } = useProjects();
 
 	if (!data || error) return <Skeleton />;
-	if (data)
-		return (
-			<Flex gap="6" flexWrap="wrap" justifyContent="center">
-				{data.map((project: any) => (
-					<ProjectCard project={project} />
-				))}
-			</Flex>
-		);
-	return <></>;
+	return (
+		<Flex gap="6" flexWrap="wrap" justifyContent="center">
+			<ProjectCard isProjectCreatorCard />
+			{data.map((project: any) => (
+				<ProjectCard project={project} />
+			))}
+		</Flex>
+	);
 };
 
 export default ProjectsSection;
