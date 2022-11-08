@@ -8,7 +8,7 @@ const UserProjects = () => {
 			<Image
 				src="/images/projects.svg"
 				marginY="8"
-				maxWidth="250"
+				maxWidth="300"
 				alt="Your Projects"
 				title="Your Projects"
 			/>
