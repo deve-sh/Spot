@@ -2,6 +2,8 @@ import React, { useMemo } from 'react';
 import { Stat, StatLabel, StatNumber, Tooltip } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
+import formatNumber from 'utils/formatNumber';
+
 interface VitalProps {
 	vitalName: string;
 	value: number;
@@ -30,7 +32,7 @@ const vitalsValueMapper = (name: string, value: number) => {
 	if (name === 'loadEventEnd') return Number(value / 1000).toFixed(2) + 's';
 	if (name === 'transferSize') return Number(value / 1000).toFixed(2) + ' MB';
 	if (name === 'averageCallDuration') return Number(value).toFixed(2) + 'ms';
-	return value;
+	return formatNumber(value);
 };
 
 const vitalExplainer = (name: string) => {
