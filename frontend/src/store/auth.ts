@@ -1,6 +1,7 @@
-import create from 'zustand';
+import create from 'zustand/vanilla';
+import createHook from 'zustand';
 
-const useAuthStore = create<{
+export const authStore = create<{
 	user: any;
 	setUser: (user: any) => any;
 	token: string | null;
@@ -11,5 +12,7 @@ const useAuthStore = create<{
 	setUser: (user: any) => set({ user }),
 	setToken: (token: string | null) => set({ token })
 }));
+
+const useAuthStore = createHook(authStore);
 
 export default useAuthStore;

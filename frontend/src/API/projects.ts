@@ -6,7 +6,6 @@ import { authStore } from 'store/auth';
 export const createProject = async (projectInputs: any) => {
 	try {
 		const token = authStore.getState().token;
-		console.log(token);
 		const response = await fetcher(getProjectCreationEndpoint(), {
 			body: JSON.stringify(projectInputs),
 			method: 'POST',
