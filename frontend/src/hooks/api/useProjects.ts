@@ -11,6 +11,7 @@ const fetcherGenerator = (user: User) => async () => {
 		.from('projects')
 		.select('*, projects_members(role, added_at)')
 		.eq('projects_members.member', user.id)
+		.order('updated_at', { ascending: false })
 		.limit(100);
 	if (error) throw error;
 	return data as Project[];

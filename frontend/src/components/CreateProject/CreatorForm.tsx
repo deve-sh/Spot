@@ -17,10 +17,11 @@ import {
 interface Props {
 	isOpen: boolean;
 	onClose: () => void;
+	isCreating: boolean;
 	triggerProjectCreation: any;
 }
 
-const CreatorForm = ({ isOpen, onClose, triggerProjectCreation }: Props) => {
+const CreatorForm = ({ isOpen, onClose, triggerProjectCreation, isCreating }: Props) => {
 	const [projectInputs, setProjectInputs] = useState({
 		projectName: ''
 	});
@@ -34,7 +35,7 @@ const CreatorForm = ({ isOpen, onClose, triggerProjectCreation }: Props) => {
 	};
 
 	return (
-		<Modal isOpen={isOpen} onClose={onClose}>
+		<Modal isOpen={isOpen} onClose={!isCreating ? onClose : () => undefined}>
 			<ModalOverlay />
 			<ModalContent>
 				<ModalHeader>Create A Project</ModalHeader>
@@ -56,17 +57,25 @@ const CreatorForm = ({ isOpen, onClose, triggerProjectCreation }: Props) => {
 							value={projectInputs.projectName}
 							onChange={onChange}
 							placeholder="ACME Project"
+							isDisabled={isCreating}
 						/>
 					</Flex>
 				</ModalBody>
 
 				<ModalFooter>
-					<Button variant="ghost" colorScheme="red" mr={3} onClick={onClose}>
+					<Button
+						isLoading={isCreating}
+						variant="ghost"
+						colorScheme="red"
+						mr={3}
+						onClick={onClose}
+					>
 						Close
 					</Button>
 					<Button
 						onClick={() => triggerProjectCreation(projectInputs)}
 						colorScheme="green"
+						isLoading={isCreating}
 					>
 						Create Project
 					</Button>
