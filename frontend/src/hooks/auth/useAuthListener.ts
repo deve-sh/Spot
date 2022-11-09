@@ -15,10 +15,8 @@ const useAuthListener = () => {
 				return;
 			}
 
-			if (event === 'SIGNED_IN') {
-				setUser(session?.user);
-				setToken(session?.access_token || null);
-			}
+			setUser(session?.user);
+			setToken(session?.access_token || null);
 		});
 
 		return subscription.unsubscribe;
