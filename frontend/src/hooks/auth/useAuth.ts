@@ -7,7 +7,8 @@ const useAuth = () => {
 
 	if (user && access_token) return { user, access_token };
 
-	if (typeof window !== 'undefined' && !user && !access_token) {
+	const isServer = typeof window === 'undefined';
+	if (!isServer) {
 		// Auth info has not been set yet.
 		// Fallback to local storage where supabase persists its data.
 		const userAndTokenInfo = JSON.parse(
