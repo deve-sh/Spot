@@ -4,6 +4,8 @@ import supabase from 'API/supabase';
 import useUser from 'hooks/auth/useUser';
 import useFetch from 'hooks/useFetch';
 
+import Project from 'types/Project';
+
 const fetcherGenerator = (user: User) => async () => {
 	const { data, error } = await supabase
 		.from('projects')
@@ -11,7 +13,7 @@ const fetcherGenerator = (user: User) => async () => {
 		.eq('projects_members.member', user.id)
 		.limit(100);
 	if (error) throw error;
-	return data;
+	return data as Project[];
 };
 
 const useProjects = () => {

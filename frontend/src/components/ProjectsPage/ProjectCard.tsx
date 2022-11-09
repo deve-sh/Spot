@@ -3,8 +3,10 @@ import styled from '@emotion/styled';
 import { Box, Flex, Icon, Text } from '@chakra-ui/react';
 import { BsLaptop, BsPlus } from 'react-icons/bs';
 
+import Project from 'types/Project';
+
 interface ProjectCardProps {
-	project?: any;
+	project?: Project;
 	isProjectCreatorCard?: boolean;
 	onClick?: (e: React.MouseEvent<HTMLLinkElement>) => any;
 }
@@ -41,7 +43,6 @@ const ProjectCreatorCardWrapper = styled(ProjectCardWrapper)`
 	gap: 1rem;
 `;
 
-// todo: Add Types for Project, Session and other backend reliant fields.
 const ProjectCard = ({ project, isProjectCreatorCard, onClick }: ProjectCardProps) => {
 	if (isProjectCreatorCard)
 		return (

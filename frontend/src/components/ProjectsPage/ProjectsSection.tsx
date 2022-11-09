@@ -2,6 +2,7 @@ import { Flex } from '@chakra-ui/react';
 
 import Skeleton from 'components/Layout/GenericSkeleton';
 import useProjects from 'hooks/api/useProjects';
+import Project from 'types/Project';
 
 import ProjectCard from './ProjectCard';
 
@@ -12,8 +13,8 @@ const ProjectsSection = () => {
 	return (
 		<Flex gap="6" flexWrap="wrap" justifyContent="center">
 			<ProjectCard isProjectCreatorCard />
-			{data.map((project: any) => (
-				<ProjectCard project={project} />
+			{data.map((project: Project) => (
+				<ProjectCard key={project.id} project={project} />
 			))}
 		</Flex>
 	);
