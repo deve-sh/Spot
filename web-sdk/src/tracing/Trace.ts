@@ -32,8 +32,11 @@ class Trace {
 		const traceMeasure = performance.getEntriesByName(this.uniqueName)[0];
 		const traceEntry: TraceEntry = {
 			duration: traceMeasure.duration,
-			trace_name: this.traceName,
-			location: JSON.stringify(location),
+			traceName: this.traceName,
+			location: JSON.stringify({
+				...globalThis.location,
+				fullBasePath: globalThis.location.origin + globalThis.location.pathname
+			}),
 			startTime: traceMeasure.startTime,
 			startedAt: performance.timeOrigin + traceMeasure.startTime,
 			sessionId: getActiveSessionId() as string

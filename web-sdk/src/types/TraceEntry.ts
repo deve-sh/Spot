@@ -1,5 +1,5 @@
 type TraceEntry = {
-	trace_name: string;
+	traceName: string;
 	duration: number;
 	startedAt: number;
 	startTime: number;
