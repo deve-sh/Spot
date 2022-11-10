@@ -9,7 +9,7 @@ const send = (endpoint: string, data?: any) => {
 	if (!canSendAPICalls || !apiKey) return;
 
 	return fetch(endpoint, {
-		body: JSON.stringify(data),
+		body: data ? JSON.stringify(data) : '',
 		mode: 'cors',
 		method: 'POST',
 		headers: { 'content-type': 'application/json', authorization: `Key ${apiKey}` }
