@@ -41,6 +41,7 @@ const mapPerformanceEntries = () => {
 					responseSize: entry.transferSize,
 					duration: entry.duration,
 					url: entry.name.split('?')[0],
+					startTime: entry.startTime,
 					startedAt: entry.startTime + performance.timeOrigin,
 					totalWaitingTime: Math.abs(entry.fetchStart - entry.startTime),
 					timeToResponse: entry.responseEnd - entry.requestStart
@@ -58,6 +59,7 @@ const mapPerformanceEntries = () => {
 					responseSize: entry.transferSize,
 					duration: entry.duration,
 					url: entry.name.split('?')[0],
+					startTime: entry.startTime,
 					startedAt: entry.startTime + performance.timeOrigin,
 					totalWaitingTime: Math.abs(entry.fetchStart - entry.startTime),
 					timeToResponse: entry.responseEnd - entry.requestStart
