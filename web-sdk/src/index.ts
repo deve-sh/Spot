@@ -1,5 +1,6 @@
 import type MonitoringEntry from './types/MonitoringEntry';
 import type LogEntry from './types/LogEntry';
+import type TraceEntry from './types/TraceEntry';
 import UserDetails, { defaultUserDetails } from './types/UserDetails';
 
 import { getInstance, setInstance } from './utils/instance';
@@ -15,6 +16,8 @@ import setupMonitoring from './monitoring/setupMonitoringInterval';
 import setupLogInterception from './logging/setupLogInterception';
 import sendLoggingData from './logging/sendLoggingData';
 import sendMonitoringData from './monitoring/sendMonitoringData';
+
+import Trace from './tracing/trace';
 
 class Spot {
 	public projectId: string = '';
@@ -52,6 +55,10 @@ class Spot {
 		});
 	}
 
+	trace(traceName: string) {
+		return new Trace(traceName);
+	}
+
 	sendEntries(entries: MonitoringEntry[]) {
 		sendMonitoringData(entries);
 	}
@@ -59,6 +66,8 @@ class Spot {
 	sendLogs(logs: LogEntry[]) {
 		sendLoggingData(logs);
 	}
+
+	sendTrace(trace: TraceEntry) {}
 }
 
 export default Spot;
