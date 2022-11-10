@@ -1,3 +1,4 @@
+import getActiveSessionId from '../session/getAlreadyActiveSessionId';
 import type TraceEntry from '../types/TraceEntry';
 import sendTracingData from './sendTracingData';
 
@@ -33,7 +34,9 @@ class Trace {
 			duration: traceMeasure.duration,
 			trace_name: this.traceName,
 			location: JSON.stringify(location),
-			startTime: performance.timeOrigin + traceMeasure.startTime
+			startTime: traceMeasure.startTime,
+			startedAt: performance.timeOrigin + traceMeasure.startTime,
+			sessionId: getActiveSessionId() as string
 		};
 		sendTracingData(traceEntry);
 	}
