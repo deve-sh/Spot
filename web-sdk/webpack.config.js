@@ -7,6 +7,7 @@ module.exports = {
 		filename: 'index.js',
 		library: 'Spot',
 		libraryTarget: 'umd',
-		libraryExport: 'default'
+		libraryExport: 'default',
+		globalObject: 'this'
 	}
 };
