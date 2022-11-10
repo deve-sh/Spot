@@ -17,7 +17,7 @@ import setupLogInterception from './logging/setupLogInterception';
 import sendLoggingData from './logging/sendLoggingData';
 import sendMonitoringData from './monitoring/sendMonitoringData';
 
-import Trace from './tracing/trace';
+import Trace from './tracing/Trace';
 
 class Spot {
 	public projectId: string = '';
