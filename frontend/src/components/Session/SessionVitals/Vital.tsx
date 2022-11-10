@@ -63,7 +63,9 @@ const Vital = (props: VitalProps) => {
 				padding="4"
 			>
 				<StatLabel>{vitalsNameMapper(props.vitalName)}</StatLabel>
-				<StatNumber>{vitalsValueMapper(props.vitalName, props.value)}</StatNumber>
+				<StatNumber color="blackAlpha.800">
+					{vitalsValueMapper(props.vitalName, props.value)}
+				</StatNumber>
 			</VitalStat>
 		</Parent>
 	);
