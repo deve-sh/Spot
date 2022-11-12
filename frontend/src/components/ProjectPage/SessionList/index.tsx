@@ -1,13 +1,12 @@
 import { MouseEvent, useCallback, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
+import { FiUsers } from 'react-icons/fi';
+import { Icon } from '@chakra-ui/react';
 
 import SessionListFragment from './SessionsListFragment';
 import Container from 'components/Layout/Container';
 import SectionHeading from 'components/SectionHeading';
 import SessionsContainer from './SessionsContainer';
-
-import { FiUsers } from 'react-icons/fi';
-import { Icon } from '@chakra-ui/react';
 
 const SessionList = () => {
 	const {
