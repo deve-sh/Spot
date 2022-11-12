@@ -1,11 +1,13 @@
 import useProject from 'hooks/api/useProject';
 import { useRouter } from 'next/router';
+import { useDisclosure } from '@chakra-ui/react';
 
 import SEO from 'components/SEO';
-import SessionList from 'components/ProjectPage/SessionList';
-import { useDisclosure } from '@chakra-ui/react';
 import ProjectHeader from 'components/ProjectPage/ProjectHeader';
 import ProjectIntegrationsInstruction from 'components/ProjectPage/IntegrationsInstruction';
+
+import SessionList from 'components/ProjectPage/SessionList';
+import ProjectTopTracesList from 'components/ProjectPage/TracesList';
 
 const ProjectPage = () => {
 	const {
@@ -26,6 +28,7 @@ const ProjectPage = () => {
 				isOpen={showIntegrationInstruction}
 				close={closeIntegrationInstruction}
 			/>
+			<ProjectTopTracesList />
 			<SessionList />
 		</>
 	);
