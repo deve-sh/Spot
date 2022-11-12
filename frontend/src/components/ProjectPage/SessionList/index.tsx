@@ -18,8 +18,9 @@ const SessionList = () => {
 	const [nSessionPages, setNSessionPages] = useState(1);
 	const [canLoadMore, setCanLoadMore] = useState(true);
 
-	const onLastLogsPageData = useCallback((data: any) => {
-		if (!data?.logs?.length || data?.error) return setCanLoadMore(false);
+	const onLastPageData = useCallback((data: any) => {
+		if (!data?.sessions?.length || data?.sessions.length < 25 || data?.error)
+			return setCanLoadMore(false);
 		else return setCanLoadMore(true);
 	}, []);
 
@@ -33,8 +34,7 @@ const SessionList = () => {
 					page={pageIndex}
 					key={pageIndex}
 					filters={selectionFilters}
-					// Last session log container should notify the parent component on receiving data if there's more to be fetched.
-					onData={pageIndex === nSessionPages - 1 ? onLastLogsPageData : undefined}
+					onData={pageIndex === nSessionPages - 1 ? onLastPageData : undefined}
 				/>
 			);
 		return pages;
