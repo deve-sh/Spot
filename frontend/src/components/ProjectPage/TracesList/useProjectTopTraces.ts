@@ -19,7 +19,6 @@ const useProjectTopTraces = ({ offset }: Properties) => {
 				: null,
 		[projectId, offset]
 	);
-	console.log({ endpoint });
 	return useFetch(endpoint);
 };
 
