@@ -38,7 +38,7 @@ const SessionInfo = () => {
 					>
 						<SessionAvatar />
 						<SessionPrimaryInfo />
-						<SessionPlatformInfo />
+						<SessionPlatformInfo session={data.session} />
 					</SessionInfoFlex>
 					<SessionStartedFrom />
 				</SessionInfoContainer>
