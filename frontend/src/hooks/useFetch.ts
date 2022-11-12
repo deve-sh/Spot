@@ -4,6 +4,7 @@ import fetcher from '../utils/fetch';
 import useAccessToken from './auth/useAccessToken';
 
 interface UseFetchOptions {
+	body?: Record<string, any>;
 	headers?: Record<string, any>;
 	revalidateOnMount?: boolean;
 	revalidateOnFocus?: boolean;
