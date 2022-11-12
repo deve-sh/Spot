@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
+import { Box } from '@chakra-ui/react';
 
 import Skeleton from 'components/Layout/GenericSkeleton';
 import useProjectSessions from './useProjectSessions';
 import Session from './Session';
-import { Box } from '@chakra-ui/react';
 
 interface Props {
 	page: number;

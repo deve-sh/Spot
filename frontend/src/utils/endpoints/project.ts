@@ -15,3 +15,11 @@ export const getListProjectSessionsEndpoint = ({
 	`${process.env.NEXT_PUBLIC_API_URL}/project/${projectId}/sessions?offset=${offset}${
 		filters ? '&filters=' + JSON.stringify(filters) : ''
 	}`;
+
+export const getListTopTracesForProjectEndpoint = ({
+	projectId,
+	offset
+}: {
+	projectId: string;
+	offset: number;
+}) => `${process.env.NEXT_PUBLIC_API_URL}/project/${projectId}/top-traces?offset=${offset}`;

@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
-import useFetch from 'hooks/useFetch';
 import { useRouter } from 'next/router';
+
+import useFetch from 'hooks/useFetch';
 import { getListProjectSessionsEndpoint } from 'utils/endpoints/project';
 
 interface Properties {
@@ -13,7 +14,14 @@ const useProjectSessions = ({ offset, filters }: Properties) => {
 		query: { projectId }
 	} = useRouter();
 	const endpoint = useMemo(
-		() => getListProjectSessionsEndpoint({ projectId: projectId as string, offset, filters }),
+		() =>
+			projectId
+				? getListProjectSessionsEndpoint({
+						projectId: projectId as string,
+						offset,
+						filters
+				  })
+				: null,
 		[projectId, offset, filters]
 	);
 	return useFetch(endpoint);
