@@ -50,7 +50,7 @@ const SessionList = () => {
 
 	return (
 		<>
-			<Container paddingY="6">
+			<Container padding="2" paddingY="6">
 				<SectionHeading>
 					<Icon as={FiUsers} height={6} width={6} marginRight="4" /> Project Sessions
 				</SectionHeading>

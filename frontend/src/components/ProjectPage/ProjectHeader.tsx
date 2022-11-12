@@ -18,7 +18,7 @@ const ProjectHeader = ({ openIntegrationInstruction }: Props) => {
 
 	if (!project) return <Skeleton />;
 	return (
-		<Container>
+		<Container padding="2">
 			<Flex marginY="4" alignItems="center">
 				<Heading
 					size="lg"
