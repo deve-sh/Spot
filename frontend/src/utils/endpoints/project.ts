@@ -5,8 +5,13 @@ export const getProjectCreationEndpoint = () => `${process.env.NEXT_PUBLIC_API_U
 
 export const getListProjectSessionsEndpoint = ({
 	projectId,
-	offset
+	offset,
+	filters
 }: {
 	projectId: string;
 	offset: number;
-}) => `${process.env.NEXT_PUBLIC_API_URL}/project/${projectId}/sessions?offset=${offset}`;
+	filters?: Record<string, string> | null;
+}) =>
+	`${process.env.NEXT_PUBLIC_API_URL}/project/${projectId}/sessions?offset=${offset}${
+		filters ? '&filters=' + JSON.stringify(filters) : ''
+	}`;

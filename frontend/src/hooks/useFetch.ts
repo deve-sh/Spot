@@ -22,6 +22,7 @@ const useFetch = (key: string | null | undefined, options: UseFetchOptions = {})
 	const fetch = useCallback(
 		(key: string): any =>
 			fetcher(key, {
+				body: options.body,
 				headers: options.headers || {
 					authorization: userToken ? `Bearer ${userToken}` : ''
 				}

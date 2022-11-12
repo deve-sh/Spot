@@ -100,6 +100,7 @@ const SessionFiltersSelector = ({ applyFilters, clearFilters }: Props) => {
 							onClick={() => {
 								setFilters(initialValue);
 								clearFilters();
+								close();
 							}}
 							disabled={!anyFiltersAdded()}
 						>
@@ -107,7 +108,10 @@ const SessionFiltersSelector = ({ applyFilters, clearFilters }: Props) => {
 						</Button>
 						<Button
 							colorScheme="green"
-							onClick={() => applyFilters(filters)}
+							onClick={() => {
+								applyFilters(filters);
+								close();
+							}}
 							disabled={!anyFiltersAdded()}
 						>
 							Apply

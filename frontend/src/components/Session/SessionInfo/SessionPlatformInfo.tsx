@@ -21,7 +21,7 @@ const SessionPlatformInfo = ({ session, iconSize = 'lg' }: { session: any; iconS
 	const iconWidth = useMemo(() => (iconSize === 'lg' ? 10 : 6), [iconSize]);
 
 	return session ? (
-		<Flex justifyContent="flex-end" flex="1" gap="3">
+		<Flex justifyContent="flex-end" flex="1" gap="3" className="session-platform-info">
 			<Tooltip label={'Browser: ' + browser}>
 				<div>
 					<InfoIcon

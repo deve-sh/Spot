@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import { Box } from '@chakra-ui/react';
+
 import type { LogType } from 'types/Log';
 
 import Skeleton from 'components/Layout/GenericSkeleton';
@@ -18,6 +20,12 @@ const SessionLogs = ({ page = 0, onData }: Props) => {
 		if (onData && (data?.message || error)) onData(data || { error });
 	}, [onData, error, data]);
 
+	if (!data?.logs.length)
+		return (
+			<Box padding="4" textAlign="center">
+				No Logs Found
+			</Box>
+		);
 	return data?.logs ? (
 		data.logs.map((log: LogType) => <Log key={log.id} log={log} />)
 	) : (

@@ -3,19 +3,27 @@ import { useEffect } from 'react';
 import Skeleton from 'components/Layout/GenericSkeleton';
 import useProjectSessions from './useProjectSessions';
 import Session from './Session';
+import { Box } from '@chakra-ui/react';
 
 interface Props {
 	page: number;
 	onData?: (data: any) => any;
+	filters?: Record<string, any> | null;
 }
 
-const SessionListFragment = ({ page = 0, onData }: Props) => {
-	const { data, error } = useProjectSessions({ offset: page * 25 });
+const SessionListFragment = ({ page = 0, onData, filters }: Props) => {
+	const { data, error } = useProjectSessions({ offset: page * 25, filters });
 
 	useEffect(() => {
 		if (onData && (data?.message || error)) onData(data || { error });
 	}, [onData, error, data]);
 
+	if (!data?.sessions.length)
+		return (
+			<Box padding="4" textAlign="center">
+				No Sessions Found
+			</Box>
+		);
 	return data?.sessions ? (
 		data.sessions.map((session: any) => <Session session={session} key={session.session_id} />)
 	) : (

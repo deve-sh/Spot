@@ -15,7 +15,7 @@ const SessionList = () => {
 	} = useRouter();
 
 	const [selectionFilters, setSelectionFilters] = useState<Record<string, string> | null>(null);
-	const [nSessionSessionsPages, setNSessionSessionsPages] = useState(1);
+	const [nSessionPages, setNSessionPages] = useState(1);
 	const [canLoadMore, setCanLoadMore] = useState(true);
 
 	const onLastLogsPageData = useCallback((data: any) => {
@@ -27,29 +27,39 @@ const SessionList = () => {
 		if (!projectId) return null;
 
 		const pages = [];
-		for (let pageIndex = 0; pageIndex < nSessionSessionsPages; pageIndex++)
+		for (let pageIndex = 0; pageIndex < nSessionPages; pageIndex++)
 			pages.push(
 				<SessionListFragment
 					page={pageIndex}
 					key={pageIndex}
+					filters={selectionFilters}
 					// Last session log container should notify the parent component on receiving data if there's more to be fetched.
-					onData={
-						pageIndex === nSessionSessionsPages - 1 ? onLastLogsPageData : undefined
-					}
+					onData={pageIndex === nSessionPages - 1 ? onLastLogsPageData : undefined}
 				/>
 			);
 		return pages;
-	}, [nSessionSessionsPages, projectId]);
+	}, [nSessionPages, projectId]);
 
-	const applyFilters = (filtersToApply: Record<string, string>) =>
+	const resetPagination = () => {
+		// Forces all pages to unmount.
+		setNSessionPages(0);
+		// Remount first page component forcing a refetch.
+		setTimeout(() => setNSessionPages(1), 1000);
+	};
+	const applyFilters = (filtersToApply: Record<string, string>) => {
 		setSelectionFilters(filtersToApply);
-	const clearAllFilters = () => setSelectionFilters(null);
+		resetPagination();
+	};
+	const clearAllFilters = () => {
+		setSelectionFilters(null);
+		resetPagination();
+	};
 
 	const loadNextPage = (e: MouseEvent<HTMLLinkElement>) => {
 		e.preventDefault();
 		if (canLoadMore) {
 			setCanLoadMore(false);
-			setNSessionSessionsPages((pages) => pages + 1);
+			setNSessionPages((pages) => pages + 1);
 		}
 	};
 

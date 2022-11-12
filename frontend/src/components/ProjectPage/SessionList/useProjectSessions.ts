@@ -13,10 +13,11 @@ const useProjectSessions = ({ offset, filters }: Properties) => {
 		query: { projectId }
 	} = useRouter();
 	const endpoint = useMemo(
-		() => getListProjectSessionsEndpoint({ projectId: projectId as string, offset }),
-		[projectId, offset]
+		() => getListProjectSessionsEndpoint({ projectId: projectId as string, offset, filters }),
+		[projectId, offset, filters]
 	);
-	return useFetch(endpoint, { body: filters || {} });
+	console.log({ filters }, endpoint);
+	return useFetch(endpoint);
 };
 
 export default useProjectSessions;
