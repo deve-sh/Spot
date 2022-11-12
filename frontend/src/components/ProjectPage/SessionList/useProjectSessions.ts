@@ -16,7 +16,6 @@ const useProjectSessions = ({ offset, filters }: Properties) => {
 		() => getListProjectSessionsEndpoint({ projectId: projectId as string, offset, filters }),
 		[projectId, offset, filters]
 	);
-	console.log({ filters }, endpoint);
 	return useFetch(endpoint);
 };
 
