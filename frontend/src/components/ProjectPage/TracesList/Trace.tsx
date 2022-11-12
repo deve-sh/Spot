@@ -16,7 +16,7 @@ const Trace = (props: Props) => {
 	if (!props.trace) return <></>;
 
 	return (
-		<Link href={`/project/${projectId}/trace/${props.trace.id}`}>
+		<Link href={`/project/${projectId}/trace/${props.trace.id}`} target="_blank">
 			<Flex
 				padding="4"
 				color="gray.500"
