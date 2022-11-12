@@ -21,7 +21,7 @@ const ProjectHeader = ({ openIntegrationInstruction }: Props) => {
 		<Container padding="2">
 			<Flex marginY="4" alignItems="center">
 				<Heading
-					size="lg"
+					size={{ xl: 'lg', md: 'md' }}
 					textTransform="capitalize"
 					whiteSpace="nowrap"
 					textOverflow="ellipsis"
