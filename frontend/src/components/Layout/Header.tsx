@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { Box, Flex } from '@chakra-ui/react';
 
 import Container from './Container';
@@ -22,7 +23,9 @@ const Header = () => {
 		>
 			<Container display="flex" alignItems="center">
 				<Box flex="1.33">
-					<Logo />
+					<Link href={user ? '/projects' : '/'}>
+						<Logo />
+					</Link>
 				</Box>
 				<Flex flex="1" justifyContent="flex-end">
 					{!user ? <SignInWithGitHub /> : <UserOptions />}

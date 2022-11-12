@@ -1,7 +1,9 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Flex, Heading, Icon, IconButton, Skeleton, Tooltip } from '@chakra-ui/react';
 import { BsCodeSlash } from 'react-icons/bs';
 import { GoGlobe } from 'react-icons/go';
+import { MdArrowBack } from 'react-icons/md';
 
 import useProject from 'hooks/api/useProject';
 import Container from 'components/Layout/Container';
@@ -20,6 +22,15 @@ const ProjectHeader = ({ openIntegrationInstruction }: Props) => {
 	return (
 		<Container padding="2">
 			<Flex marginY="4" alignItems="center">
+				<Link href="/projects">
+					<IconButton
+						colorScheme="whiteAlpha"
+						padding="0"
+						mr="3"
+						icon={<Icon height={5} width={5} as={MdArrowBack} />}
+						color="gray.500"
+					/>
+				</Link>
 				<Heading
 					size={{ xl: 'lg', md: 'md' }}
 					textTransform="capitalize"
