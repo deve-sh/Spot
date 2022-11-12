@@ -23,3 +23,6 @@ export const getListTopTracesForProjectEndpoint = ({
 	projectId: string;
 	offset: number;
 }) => `${process.env.NEXT_PUBLIC_API_URL}/project/${projectId}/top-traces?offset=${offset}`;
+
+export const getOverallVitalsForProjectEndpoint = ({ projectId }: { projectId: string }) =>
+	`${process.env.NEXT_PUBLIC_API_URL}/project/${projectId}/vitals`;

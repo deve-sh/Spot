@@ -3,11 +3,12 @@ import { useRouter } from 'next/router';
 import { useDisclosure } from '@chakra-ui/react';
 
 import SEO from 'components/SEO';
-import ProjectHeader from 'components/ProjectPage/ProjectHeader';
-import ProjectIntegrationsInstruction from 'components/ProjectPage/IntegrationsInstruction';
 
-import SessionList from 'components/ProjectPage/SessionList';
+import ProjectHeader from 'components/ProjectPage/ProjectHeader';
+import ProjectVitals from 'components/ProjectPage/ProjectVitals';
 import ProjectTopTracesList from 'components/ProjectPage/TracesList';
+import SessionList from 'components/ProjectPage/SessionList';
+import ProjectIntegrationsInstruction from 'components/ProjectPage/IntegrationsInstruction';
 
 const ProjectPage = () => {
 	const {
@@ -24,6 +25,7 @@ const ProjectPage = () => {
 		<>
 			<SEO title={`Spot | ${project?.project_name || `Project ${projectId}`}`} />
 			<ProjectHeader openIntegrationInstruction={openIntegrationInstruction} />
+			<ProjectVitals />
 			<ProjectIntegrationsInstruction
 				isOpen={showIntegrationInstruction}
 				close={closeIntegrationInstruction}
