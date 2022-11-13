@@ -18,7 +18,12 @@ const ProjectHeader = ({ openIntegrationInstruction }: Props) => {
 	} = useRouter();
 	const { data: { project } = {} } = useProject(projectId as string);
 
-	if (!project) return <Skeleton />;
+	if (!project)
+		return (
+			<Container padding="2">
+				<Skeleton />
+			</Container>
+		);
 	return (
 		<Container padding="2">
 			<Flex marginY="4" alignItems="center">

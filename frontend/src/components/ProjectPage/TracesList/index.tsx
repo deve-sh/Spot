@@ -49,14 +49,8 @@ const ProjectTopTracesList = () => {
 		<>
 			<Container padding="2" paddingY="6">
 				<SectionHeading>
-					<Icon
-						as={MdWaterfallChart}
-						color="green"
-						height={6}
-						width={6}
-						marginRight="4"
-					/>{' '}
-					Custom Traces
+					<Icon as={MdWaterfallChart} height={6} width={6} marginRight="3" /> Custom
+					Traces
 				</SectionHeading>
 				<TracesContainer showLoadMore={canLoadMore} onClickLoadMore={loadNextPage}>
 					{tracesPages}

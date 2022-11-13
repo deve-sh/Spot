@@ -69,7 +69,7 @@ const SessionList = () => {
 				<Flex alignItems="center" mb="2">
 					<Box flex="1">
 						<SectionHeading>
-							<Icon as={FiUsers} height={6} width={6} marginRight="4" /> Project
+							<Icon as={FiUsers} height={6} width={6} marginRight="3" /> Project
 							Sessions
 						</SectionHeading>
 					</Box>

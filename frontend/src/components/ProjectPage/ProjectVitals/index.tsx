@@ -38,9 +38,14 @@ const ProjectVitals = (props: Props) => {
 			props.openIntegrationInstruction();
 	}, [data?.vitals, isValidating]);
 
-	if (!data) return <Skeleton />;
+	if (!data)
+		return (
+			<Container padding="2">
+				<Skeleton />
+			</Container>
+		);
 	return (
-		<Container paddingBottom="2">
+		<Container padding="2">
 			<Flex flexWrap="wrap" color="gray.600" gap="6">
 				{vitals}
 			</Flex>
