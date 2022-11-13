@@ -19,17 +19,14 @@ const TraceListFragment = ({ page = 0, onData }: Props) => {
 		if (onData && (data?.message || error)) onData(data || { error });
 	}, [onData, error, data]);
 
-	if (!data?.traces.length)
+	if (!data) return <Skeleton height="50vh" borderRadius="none" />;
+	if (!data?.traces?.length)
 		return (
 			<Box padding="4" textAlign="center">
 				<NoneFound label="No Traces Found" />
 			</Box>
 		);
-	return data?.traces ? (
-		data.traces.map((trace: any) => <Trace trace={trace} key={trace.id} />)
-	) : (
-		<Skeleton height="50vh" borderRadius="none" />
-	);
+	return data.traces.map((trace: any) => <Trace trace={trace} key={trace.id} />);
 };
 
 export default TraceListFragment;
