@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { Box } from '@chakra-ui/react';
 
 import Skeleton from 'components/Layout/GenericSkeleton';
+import NoneFound from 'components/NoneFound';
+
 import useProjectTraces from './useProjectTopTraces';
 import Trace from './Trace';
 
@@ -20,7 +22,7 @@ const TraceListFragment = ({ page = 0, onData }: Props) => {
 	if (!data?.traces.length)
 		return (
 			<Box padding="4" textAlign="center">
-				No Traces Found
+				<NoneFound label="No Traces Found" />
 			</Box>
 		);
 	return data?.traces ? (
