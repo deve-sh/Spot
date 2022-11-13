@@ -6,7 +6,7 @@ import supabase from './supabase';
 export const signInWithGitHub = () =>
 	supabase.auth.signInWithOAuth({
 		provider: 'github',
-		redirectTo: window.location.origin
+		options: { redirectTo: window.location.origin }
 	});
 
 export const onAuthStateChanged = (
