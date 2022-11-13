@@ -17,7 +17,13 @@ const ProjectVitals = () => {
 		for (let i = 0; i < vitalKeys.length; i++) {
 			const vitalName = vitalKeys[i];
 			vitalsFragments.push(
-				<Vital key={vitalName} vitalName={vitalName} value={data.vitals[vitalName]} />
+				<Vital
+					key={vitalName}
+					vitalName={vitalName}
+					value={data.vitals[vitalName]}
+					comparatorValue={data.tillLastWeek?.[vitalName]}
+					comparatorLabel={'Till 7 Days ago'}
+				/>
 			);
 		}
 		return vitalsFragments;

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Stat, StatLabel, StatNumber, Tooltip } from '@chakra-ui/react';
+import { Stat, StatArrow, StatHelpText, StatLabel, StatNumber, Tooltip } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 import formatNumber from 'utils/formatNumber';
@@ -7,6 +7,8 @@ import formatNumber from 'utils/formatNumber';
 interface VitalProps {
 	vitalName: string;
 	value: number;
+	comparatorValue?: number;
+	comparatorLabel?: string;
 }
 
 const vitalsNameMapper = (name: string) => {
@@ -66,6 +68,21 @@ const Vital = (props: VitalProps) => {
 				<StatNumber color="blackAlpha.800">
 					{vitalsValueMapper(props.vitalName, props.value)}
 				</StatNumber>
+				{props.comparatorValue && props.comparatorValue !== props.value ? (
+					<Tooltip label={props.comparatorLabel}>
+						<StatHelpText fontSize="xs">
+							<StatArrow
+								type={
+									props.comparatorValue >= props.value ? 'decrease' : 'increase'
+								}
+								color={props.comparatorValue >= props.value ? 'green' : 'red'}
+							/>
+							{Number(100 - (props.value / props.comparatorValue) * 100).toFixed(2)}%
+						</StatHelpText>
+					</Tooltip>
+				) : (
+					''
+				)}
 			</VitalStat>
 		</Parent>
 	);
