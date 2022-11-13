@@ -29,3 +29,6 @@ export const getOverallVitalsForProjectEndpoint = ({ projectId }: { projectId: s
 
 export const getTopURLsForProjectEndpoint = ({ projectId }: { projectId: string }) =>
 	`${process.env.NEXT_PUBLIC_API_URL}/project/${projectId}/top-nav-urls`;
+
+export const getTopSessionDomainsForProjectEndpoint = ({ projectId }: { projectId: string }) =>
+	`${process.env.NEXT_PUBLIC_API_URL}/project/${projectId}/top-session-domains`;

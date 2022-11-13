@@ -10,6 +10,7 @@ import ProjectTopTracesList from 'components/ProjectPage/TracesList';
 import SessionList from 'components/ProjectPage/SessionList';
 import ProjectIntegrationsInstruction from 'components/ProjectPage/IntegrationsInstruction';
 import ProjectTopURLs from 'components/ProjectPage/TopURLs';
+import ProjectTopSessionDomains from 'components/ProjectPage/TopSessionDomains';
 
 const ProjectPage = () => {
 	const {
@@ -34,6 +35,7 @@ const ProjectPage = () => {
 			<ProjectTopTracesList />
 			<ProjectTopURLs />
 			<SessionList />
+			<ProjectTopSessionDomains />
 		</>
 	);
 };
