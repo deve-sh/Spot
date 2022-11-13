@@ -26,3 +26,6 @@ export const getListTopTracesForProjectEndpoint = ({
 
 export const getOverallVitalsForProjectEndpoint = ({ projectId }: { projectId: string }) =>
 	`${process.env.NEXT_PUBLIC_API_URL}/project/${projectId}/vitals`;
+
+export const getTopURLsForProjectEndpoint = ({ projectId }: { projectId: string }) =>
+	`${process.env.NEXT_PUBLIC_API_URL}/project/${projectId}/top-nav-urls`;

@@ -24,6 +24,7 @@ const ProjectHeader = ({ openIntegrationInstruction }: Props) => {
 			<Flex marginY="4" alignItems="center">
 				<Link href="/projects">
 					<IconButton
+						aria-label="Go back to Projects"
 						colorScheme="whiteAlpha"
 						padding="0"
 						mr="3"

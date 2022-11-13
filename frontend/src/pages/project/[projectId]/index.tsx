@@ -9,6 +9,7 @@ import ProjectVitals from 'components/ProjectPage/ProjectVitals';
 import ProjectTopTracesList from 'components/ProjectPage/TracesList';
 import SessionList from 'components/ProjectPage/SessionList';
 import ProjectIntegrationsInstruction from 'components/ProjectPage/IntegrationsInstruction';
+import ProjectTopURLs from 'components/ProjectPage/TopURLs';
 
 const ProjectPage = () => {
 	const {
@@ -31,6 +32,7 @@ const ProjectPage = () => {
 				close={closeIntegrationInstruction}
 			/>
 			<ProjectTopTracesList />
+			<ProjectTopURLs />
 			<SessionList />
 		</>
 	);
