@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import { Flex } from '@chakra-ui/react';
 
 import Container from 'components/Layout/Container';
@@ -7,8 +7,12 @@ import Vital from 'components/Vital';
 
 import useProjectVitals from './useProjectVitals';
 
-const ProjectVitals = () => {
-	const { data } = useProjectVitals();
+interface Props {
+	openIntegrationInstruction: () => void;
+}
+
+const ProjectVitals = (props: Props) => {
+	const { data, isValidating } = useProjectVitals();
 
 	const vitals = useMemo(() => {
 		if (!data?.vitals) return null;
@@ -29,17 +33,17 @@ const ProjectVitals = () => {
 		return vitalsFragments;
 	}, [data?.vitals]);
 
+	useEffect(() => {
+		if (data && !Object.keys(data.vitals || {}).length && !isValidating)
+			props.openIntegrationInstruction();
+	}, [data?.vitals, isValidating]);
+
+	if (!data) return <Skeleton />;
 	return (
 		<Container paddingBottom="2">
-			{data ? (
-				<>
-					<Flex flexWrap="wrap" color="gray.600" gap="6">
-						{vitals}
-					</Flex>
-				</>
-			) : (
-				<Skeleton />
-			)}
+			<Flex flexWrap="wrap" color="gray.600" gap="6">
+				{vitals}
+			</Flex>
 		</Container>
 	);
 };

@@ -25,7 +25,7 @@ const ProjectPage = () => {
 		<>
 			<SEO title={`Spot | ${project?.project_name || `Project ${projectId}`}`} />
 			<ProjectHeader openIntegrationInstruction={openIntegrationInstruction} />
-			<ProjectVitals />
+			<ProjectVitals openIntegrationInstruction={openIntegrationInstruction} />
 			<ProjectIntegrationsInstruction
 				isOpen={showIntegrationInstruction}
 				close={closeIntegrationInstruction}
