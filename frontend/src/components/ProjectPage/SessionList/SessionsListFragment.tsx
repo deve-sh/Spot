@@ -20,17 +20,16 @@ const SessionListFragment = ({ page = 0, onData, filters }: Props) => {
 		if (onData && (data?.message || error)) onData(data || { error });
 	}, [onData, error, data]);
 
-	if (!data?.sessions.length)
+	if (!data) return <Skeleton height="50vh" borderRadius="none" />;
+	if (!data?.sessions?.length)
 		return (
 			<Box padding="4" textAlign="center">
 				<NoneFound label="No Sessions Found" />
 			</Box>
 		);
-	return data?.sessions ? (
-		data.sessions.map((session: any) => <Session session={session} key={session.session_id} />)
-	) : (
-		<Skeleton height="50vh" borderRadius="none" />
-	);
+	return data.sessions.map((session: any) => (
+		<Session session={session} key={session.session_id} />
+	));
 };
 
 export default SessionListFragment;
