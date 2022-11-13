@@ -1,5 +1,5 @@
-import getActiveSessionId from '../session/getAlreadyActiveSessionId';
 import type TraceEntry from '../types/TraceEntry';
+import { getInstance } from '../utils/instance';
 import sendTracingData from './sendTracingData';
 
 // Traces are a way to measure the timing of custom App level code.
@@ -29,6 +29,9 @@ class Trace {
 		performance.measure(this.uniqueName, this.startMark, this.endMark);
 
 		// Get the performance impact.
+		const instance = getInstance();
+		if (!instance) return;
+
 		const traceMeasure = performance.getEntriesByName(this.uniqueName)[0];
 		const traceEntry: TraceEntry = {
 			duration: traceMeasure.duration,
@@ -39,7 +42,7 @@ class Trace {
 			}),
 			startTime: traceMeasure.startTime,
 			startedAt: performance.timeOrigin + traceMeasure.startTime,
-			sessionId: getActiveSessionId() as string
+			sessionId: instance.sessionId
 		};
 		sendTracingData(traceEntry);
 	}
