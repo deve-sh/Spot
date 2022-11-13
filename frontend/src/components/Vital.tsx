@@ -54,7 +54,7 @@ const Vital = (props: VitalProps) => {
 	const vitalsExplainingText = useMemo(() => vitalExplainer(props.vitalName), [props.vitalName]);
 	const Parent = vitalsExplainingText ? Tooltip : React.Fragment;
 	return (
-		<Parent label={vitalsExplainingText}>
+		<Parent {...(vitalsExplainingText ? { label: vitalsExplainingText } : {})}>
 			<VitalStat
 				minWidth="25%"
 				borderRadius="lg"
