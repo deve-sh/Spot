@@ -19,7 +19,7 @@ const HeroSection = () => {
 			<Flex justifyContent="center" my="5">
 				<Image src="/images/logo.svg" height="100%" maxHeight={35} mr="2" />
 			</Flex>
-			<Heading color="gray.700" mb="5">
+			<Heading color="gray.700" mb="5" px="2">
 				Spot: The Frontend Monitoring Stack
 			</Heading>
 			<Text
