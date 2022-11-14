@@ -9,7 +9,7 @@ const getLabelForUsageAction = (action: string) => {
 	if (action === 'get_session_info') return 'Get Session Info';
 	if (action === 'get_session_logs') return 'Get Session Logs';
 	if (action === 'get_session_vitals') return 'Get Session Vitals';
-	return 'Untagged';
+	return 'Monitoring & Logging API';
 };
 
 export default getLabelForUsageAction;
