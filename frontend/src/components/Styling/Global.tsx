@@ -15,6 +15,7 @@ const GlobalStyles = () => (
 				background: var(--white);
 				color: var(--primary);
 				font-family: Nunito Sans, sans-serif;
+				overflow-x: hidden;
 			}
 
 			::-webkit-scrollbar {
