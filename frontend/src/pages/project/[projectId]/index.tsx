@@ -55,12 +55,10 @@ const ProjectPage = () => {
 			<ProjectTopURLs />
 			<SessionList />
 			<ProjectTopSessionDomains />
-			{showProjectMonthlyUsage && (
-				<ProjectMonthUsageModal
-					isOpen={showProjectMonthlyUsage}
-					close={closeProjectMonthlyUsage}
-				/>
-			)}
+			<ProjectMonthUsageModal
+				isOpen={showProjectMonthlyUsage}
+				close={closeProjectMonthlyUsage}
+			/>
 		</>
 	);
 };
