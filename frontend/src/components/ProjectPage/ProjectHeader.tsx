@@ -3,16 +3,17 @@ import { useRouter } from 'next/router';
 import { Flex, Heading, Icon, IconButton, Skeleton, Tooltip } from '@chakra-ui/react';
 import { BsCodeSlash } from 'react-icons/bs';
 import { GoGlobe } from 'react-icons/go';
-import { MdArrowBack } from 'react-icons/md';
+import { MdArrowBack, MdDataUsage } from 'react-icons/md';
 
 import useProject from 'hooks/api/useProject';
 import Container from 'components/Layout/Container';
 
 interface Props {
 	openIntegrationInstruction: () => void;
+	openProjectMonthlyUsage: () => void;
 }
 
-const ProjectHeader = ({ openIntegrationInstruction }: Props) => {
+const ProjectHeader = ({ openIntegrationInstruction, openProjectMonthlyUsage }: Props) => {
 	const {
 		query: { projectId }
 	} = useRouter();
@@ -51,6 +52,14 @@ const ProjectHeader = ({ openIntegrationInstruction }: Props) => {
 						<Flex marginRight="2" alignItems="center">
 							<Icon as={GoGlobe} height={7} width={7} />
 						</Flex>
+					</Tooltip>
+					<Tooltip label="Usage This Month">
+						<IconButton
+							icon={<Icon as={MdDataUsage} height={6} width={6} />}
+							aria-label="Usage This Month"
+							variant="ghost"
+							onClick={openProjectMonthlyUsage}
+						/>
 					</Tooltip>
 					<Tooltip label="Integrate">
 						<IconButton

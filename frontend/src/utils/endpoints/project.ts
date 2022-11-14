@@ -32,3 +32,6 @@ export const getTopURLsForProjectEndpoint = ({ projectId }: { projectId: string 
 
 export const getTopSessionDomainsForProjectEndpoint = ({ projectId }: { projectId: string }) =>
 	`${process.env.NEXT_PUBLIC_API_URL}/project/${projectId}/top-session-domains`;
+
+export const getThisMonthUsageForProject = ({ projectId }: { projectId: string }) =>
+	`${process.env.NEXT_PUBLIC_API_URL}/project/${projectId}/monthly-usage-info`;

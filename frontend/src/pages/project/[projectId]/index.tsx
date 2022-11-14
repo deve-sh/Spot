@@ -11,6 +11,7 @@ import SessionList from 'components/ProjectPage/SessionList';
 import ProjectIntegrationsInstruction from 'components/ProjectPage/IntegrationsInstruction';
 import ProjectTopURLs from 'components/ProjectPage/TopURLs';
 import ProjectTopSessionDomains from 'components/ProjectPage/TopSessionDomains';
+import ProjectMonthUsageModal from 'components/ProjectPage/ProjectMonthUsage';
 
 const ProjectPage = () => {
 	const {
@@ -22,11 +23,19 @@ const ProjectPage = () => {
 		onOpen: openIntegrationInstruction,
 		onClose: closeIntegrationInstruction
 	} = useDisclosure();
+	const {
+		isOpen: showProjectMonthlyUsage,
+		onOpen: openProjectMonthlyUsage,
+		onClose: closeProjectMonthlyUsage
+	} = useDisclosure();
 
 	return (
 		<>
 			<SEO title={`Spot | ${project?.project_name || `Project ${projectId}`}`} />
-			<ProjectHeader openIntegrationInstruction={openIntegrationInstruction} />
+			<ProjectHeader
+				openIntegrationInstruction={openIntegrationInstruction}
+				openProjectMonthlyUsage={openProjectMonthlyUsage}
+			/>
 			<ProjectVitals openIntegrationInstruction={openIntegrationInstruction} />
 			<ProjectIntegrationsInstruction
 				isOpen={showIntegrationInstruction}
@@ -36,6 +45,12 @@ const ProjectPage = () => {
 			<ProjectTopURLs />
 			<SessionList />
 			<ProjectTopSessionDomains />
+			{showProjectMonthlyUsage && (
+				<ProjectMonthUsageModal
+					isOpen={showProjectMonthlyUsage}
+					close={closeProjectMonthlyUsage}
+				/>
+			)}
 		</>
 	);
 };
