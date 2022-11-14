@@ -3,15 +3,25 @@ import { useRouter } from 'next/router';
 import { useDisclosure } from '@chakra-ui/react';
 
 import SEO from 'components/SEO';
+import dynamic from 'next/dynamic';
 
-import ProjectHeader from 'components/ProjectPage/ProjectHeader';
-import ProjectVitals from 'components/ProjectPage/ProjectVitals';
-import ProjectTopTracesList from 'components/ProjectPage/TracesList';
-import SessionList from 'components/ProjectPage/SessionList';
-import ProjectIntegrationsInstruction from 'components/ProjectPage/IntegrationsInstruction';
-import ProjectTopURLs from 'components/ProjectPage/TopURLs';
-import ProjectTopSessionDomains from 'components/ProjectPage/TopSessionDomains';
-import ProjectMonthUsageModal from 'components/ProjectPage/ProjectMonthUsage';
+const ProjectHeader = dynamic(() => import('components/ProjectPage/ProjectHeader'), { ssr: false });
+const ProjectVitals = dynamic(() => import('components/ProjectPage/ProjectVitals'), { ssr: false });
+const ProjectTopTracesList = dynamic(() => import('components/ProjectPage/TracesList'), {
+	ssr: false
+});
+const SessionList = dynamic(() => import('components/ProjectPage/SessionList'), { ssr: false });
+const ProjectIntegrationsInstruction = dynamic(
+	() => import('components/ProjectPage/IntegrationsInstruction'),
+	{ ssr: false }
+);
+const ProjectTopURLs = dynamic(() => import('components/ProjectPage/TopURLs'), { ssr: false });
+const ProjectTopSessionDomains = dynamic(() => import('components/ProjectPage/TopSessionDomains'), {
+	ssr: false
+});
+const ProjectMonthUsageModal = dynamic(() => import('components/ProjectPage/ProjectMonthUsage'), {
+	ssr: false
+});
 
 const ProjectPage = () => {
 	const {
