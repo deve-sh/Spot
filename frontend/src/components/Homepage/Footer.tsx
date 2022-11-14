@@ -1,5 +1,5 @@
 import { Flex, Icon, Text } from '@chakra-ui/react';
-import { FaCoffee, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
 	return (
