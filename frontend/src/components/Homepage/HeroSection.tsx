@@ -1,4 +1,4 @@
-import { Button, Divider, Flex, Heading, Icon, Image } from '@chakra-ui/react';
+import { Button, Divider, Flex, Heading, Icon, Image, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import { FaGithub } from 'react-icons/fa';
@@ -15,13 +15,25 @@ const HeroSectionContainer = styled(Container)`
 
 const HeroSection = () => {
 	return (
-		<HeroSectionContainer color="gray.800" textAlign="center">
+		<HeroSectionContainer textAlign="center">
 			<Flex justifyContent="center" my="5">
 				<Image src="/images/logo.svg" height="100%" maxHeight={35} mr="2" />
 			</Flex>
 			<Heading color="gray.700" mb="5">
-				The Definitive Frontend Monitoring Stack
+				Spot: The Frontend Monitoring Stack
 			</Heading>
+			<Text
+				color="gray.500"
+				maxWidth="650px"
+				fontSize="lg"
+				margin="0 auto"
+				mb="5"
+				padding="2"
+			>
+				Spot is a simple and elegant way to monitor all aspects of your web app. From
+				Performance to code to user sessions, their logs and network waterfalls. So you
+				never have to wonder anything about your end users again.
+			</Text>
 			<Flex justifyContent="center" mb="5" gap="4" padding="2">
 				<Button
 					colorScheme="teal"
