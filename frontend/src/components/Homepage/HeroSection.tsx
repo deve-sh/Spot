@@ -53,7 +53,8 @@ const HeroSection = () => {
 					<Button
 						colorScheme="teal"
 						variant="outline"
-						padding="8"
+						py="8"
+						px="4"
 						fontSize="lg"
 						fontWeight="bold"
 						leftIcon={<Icon as={SiFiles} width={7} height={7} />}
