@@ -16,9 +16,9 @@ import {
 } from '@chakra-ui/react';
 import {
 	ResponsiveContainer,
-	LineChart,
+	BarChart,
 	CartesianGrid,
-	Line,
+	Bar,
 	Legend,
 	Tooltip,
 	YAxis,
@@ -109,14 +109,14 @@ const ProjectMonthUsageModal = ({ isOpen, close }: Props) => {
 						<SectionHeading>Usage By Day</SectionHeading>
 						{usageLineChartData.length ? (
 							<ResponsiveContainer width="100%" height={250}>
-								<LineChart data={usageLineChartData}>
+								<BarChart data={usageLineChartData}>
 									<CartesianGrid strokeDasharray="3 3" />
 									<XAxis dataKey="name" />
 									<YAxis />
 									<Tooltip />
 									<Legend />
-									<Line dataKey="No Of API Calls" stroke="#004643" />
-								</LineChart>
+									<Bar dataKey="No Of API Calls" fill="#004643" maxBarSize={40} />
+								</BarChart>
 							</ResponsiveContainer>
 						) : (
 							<NoneFound label="Not enough data yet." />
