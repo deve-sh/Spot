@@ -66,8 +66,6 @@ class Spot {
 	sendLogs(logs: LogEntry[]) {
 		sendLoggingData(logs);
 	}
-
-	sendTrace(trace: TraceEntry) {}
 }
 
 export default Spot;
