@@ -25,7 +25,7 @@ const NavbarLink = styled(Link)`
 	color: var(--chakra-colors-gray-700);
 	padding: 0.75rem 0.5rem;
 	border-radius: 0.25rem;
-	transition: 1s;
+	transition: 0.2s;
 	min-width: 9.5rem;
 
 	&.active {
