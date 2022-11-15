@@ -4,6 +4,8 @@ import ReactMarkdown from 'react-markdown';
 
 import Layout from 'components/Docs/Layout';
 import SEO from 'components/SEO';
+import CodeBlock from 'components/Docs/CodeBlock';
+
 import docsNavList from '../../../docs/navlist';
 
 interface Props {
@@ -15,7 +17,7 @@ const DocPage = ({ docPageContent, docPageTitle }: Props) => {
 	return (
 		<Layout>
 			<SEO title={`Spot | ${docPageTitle}`} />
-			<ReactMarkdown children={docPageContent} />
+			<ReactMarkdown children={docPageContent} components={{ code: CodeBlock }} />
 		</Layout>
 	);
 };

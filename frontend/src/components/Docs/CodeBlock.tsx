@@ -30,14 +30,15 @@ const CodeBlockWrapper = styled.div`
 	}
 `;
 
-const CodeBlock = ({ language, value }: any) => {
-	return (
-		<CodeBlockWrapper>
-			<SyntaxHighlighter language={language} style={tomorrow}>
-				{value}
-			</SyntaxHighlighter>
-		</CodeBlockWrapper>
-	);
-};
+const CodeBlock = (props: any) => (
+	<CodeBlockWrapper>
+		<SyntaxHighlighter
+			language={props.className?.split?.('language-').pop() || 'bash'}
+			style={tomorrow}
+		>
+			{props.children}
+		</SyntaxHighlighter>
+	</CodeBlockWrapper>
+);
 
 export default CodeBlock;

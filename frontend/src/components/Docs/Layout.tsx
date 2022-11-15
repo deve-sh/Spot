@@ -38,6 +38,10 @@ const MarkdownStyling = css`
 		ul {
 			margin-left: var(--chakra-space-4);
 		}
+
+		pre {
+			margin-bottom: 2rem;
+		}
 	}
 `;
 
