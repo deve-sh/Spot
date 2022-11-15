@@ -37,7 +37,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	return {
-		paths: docsNavList.map((navItem) => ({ params: { docPage: navItem.url } })),
+		paths: docsNavList.map((navItem) => ({
+			params: { docPage: navItem.url.replace('/', '') }
+		})),
 		fallback: 'blocking'
 	};
 };
