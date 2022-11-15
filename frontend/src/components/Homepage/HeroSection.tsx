@@ -20,7 +20,10 @@ const HeroSection = () => {
 				<Image src="/images/logo.svg" height="100%" maxHeight={35} mr="2" />
 			</Flex>
 			<Heading color="gray.700" mb="5" px="2">
-				Spot: The Frontend Monitoring Stack
+				<Text color="teal" display="inline-block">
+					Spot
+				</Text>{' '}
+				- The Frontend Monitoring Stack
 			</Heading>
 			<Text
 				color="gray.500"
