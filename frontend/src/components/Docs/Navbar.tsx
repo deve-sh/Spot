@@ -41,7 +41,7 @@ const DocsNavbar = () => {
 		<StyledNav>
 			{docsNavList.map((navItem) => (
 				<NavbarLink
-					href={navItem.url}
+					href={`/docs/${navItem.url}`}
 					title={navItem.title}
 					className={`/${docPage}` === navItem.url ? 'active' : ''}
 				>
