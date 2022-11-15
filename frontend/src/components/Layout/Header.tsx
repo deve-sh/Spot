@@ -22,12 +22,13 @@ const Header = () => {
 			padding="3"
 		>
 			<Container display="flex" alignItems="center">
-				<Box flex="1.33">
+				<Box flex="0.33">
 					<Link href={user ? '/projects' : '/'}>
 						<Logo />
 					</Link>
 				</Box>
-				<Flex flex="1" justifyContent="flex-end">
+				<Flex flex="1" justifyContent="flex-end" alignItems="center" gap="4">
+					<Link href="/docs">Docs</Link>
 					{!user ? <SignInWithGitHub /> : <UserOptions />}
 				</Flex>
 			</Container>
