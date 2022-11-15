@@ -9,6 +9,8 @@ interface Props {
 const TracesContainer = ({ children, showLoadMore, onClickLoadMore }: Props) => (
 	<Box
 		maxHeight="75vh"
+		overflow="hidden"
+		overflowY="auto"
 		borderWidth="1px"
 		borderRadius="lg"
 		borderColor="gray.200"

@@ -9,10 +9,11 @@ interface Props {
 const LogsContainer = ({ children, showLoadMore, onClickLoadMore }: Props) => (
 	<Box
 		maxHeight="75vh"
+		overflow="hidden"
+		overflowY="auto"
 		borderWidth="1px"
 		borderRadius="lg"
 		borderColor="gray.200"
-		overflowY="scroll"
 		className="logs-container"
 	>
 		{children}

@@ -7,7 +7,14 @@ interface Props {
 }
 
 const SessionsContainer = ({ children, showLoadMore, onClickLoadMore }: Props) => (
-	<Box maxHeight="75vh" borderWidth="1px" borderRadius="lg" borderColor="gray.200">
+	<Box
+		maxHeight="75vh"
+		overflow="hidden"
+		overflowY="auto"
+		borderWidth="1px"
+		borderRadius="lg"
+		borderColor="gray.200"
+	>
 		{children}
 		{showLoadMore ? (
 			<Box textAlign="center" textTransform="uppercase" color="gray.500" padding="4">
