@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import {
 	Flex,
 	Heading,
@@ -16,6 +15,7 @@ import { MdArrowBack, MdDataUsage } from 'react-icons/md';
 import useProject from 'hooks/api/useProject';
 import Container from 'components/Layout/Container';
 import ProjectDeletionDialog from './DeleteProject';
+import useProjectUserRole from 'hooks/api/useProjectUserRole';
 
 interface Props {
 	openIntegrationInstruction: () => void;
@@ -23,10 +23,10 @@ interface Props {
 }
 
 const ProjectHeader = ({ openIntegrationInstruction, openProjectMonthlyUsage }: Props) => {
-	const {
-		query: { projectId }
-	} = useRouter();
-	const { data: { project } = {} } = useProject(projectId as string);
+	const { data: { project } = {} } = useProject();
+	const { data: { role } = {} } = useProjectUserRole();
+
+	console.log({ role });
 
 	const {
 		isOpen: showProjectDeletionDialog,
@@ -84,15 +84,17 @@ const ProjectHeader = ({ openIntegrationInstruction, openProjectMonthlyUsage }: 
 							onClick={openIntegrationInstruction}
 						/>
 					</Tooltip>
-					<Tooltip label="Delete Project">
-						<IconButton
-							icon={<Icon as={BsTrash} height={6} width={6} />}
-							aria-label="Delete Project"
-							variant="ghost"
-							colorScheme="red"
-							onClick={openProjectDeletionDialog}
-						/>
-					</Tooltip>
+					{role === 'admin' && (
+						<Tooltip label="Delete Project">
+							<IconButton
+								icon={<Icon as={BsTrash} height={6} width={6} />}
+								aria-label="Delete Project"
+								variant="ghost"
+								colorScheme="red"
+								onClick={openProjectDeletionDialog}
+							/>
+						</Tooltip>
+					)}
 				</Flex>
 			</Flex>
 			<ProjectDeletionDialog
