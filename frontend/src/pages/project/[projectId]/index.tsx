@@ -24,10 +24,8 @@ const ProjectMonthUsageModal = dynamic(() => import('components/ProjectPage/Proj
 });
 
 const ProjectPage = () => {
-	const {
-		query: { projectId }
-	} = useRouter();
-	const { data: { project } = {} } = useProject(projectId as string);
+	const { query: { projectId } = {} } = useRouter();
+	const { data: { project } = {} } = useProject();
 	const {
 		isOpen: showIntegrationInstruction,
 		onOpen: openIntegrationInstruction,

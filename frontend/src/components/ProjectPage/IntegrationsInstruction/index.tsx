@@ -50,10 +50,8 @@ const CommonCode = (props: any) => (
 
 const ProjectIntegrationsInstruction = ({ isOpen, close }: Props) => {
 	const toast = useToast();
-	const {
-		query: { projectId }
-	} = useRouter();
-	const { data: { project } = {} } = useProject(projectId as string);
+	const { query: { projectId } = {} } = useRouter();
+	const { data: { project } = {} } = useProject();
 
 	const copyAPIKey = () =>
 		copyText(project.public_api_key, () => toast({ title: 'API Key copied', status: 'info' }));
