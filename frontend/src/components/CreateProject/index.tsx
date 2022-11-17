@@ -21,7 +21,7 @@ const CreateProject = ({ isOpen, onClose, onCreate }: Props) => {
 		setIsCreating(false);
 		if (error)
 			return toast({
-				title: error.response?.message || error.message,
+				title: error.response?.error?.message || error.message,
 				status: 'error',
 				duration: 5000,
 				isClosable: true

@@ -1,12 +1,21 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Flex, Heading, Icon, IconButton, Skeleton, Tooltip } from '@chakra-ui/react';
-import { BsCodeSlash } from 'react-icons/bs';
+import {
+	Flex,
+	Heading,
+	Icon,
+	IconButton,
+	Skeleton,
+	Tooltip,
+	useDisclosure
+} from '@chakra-ui/react';
+import { BsCodeSlash, BsTrash } from 'react-icons/bs';
 import { GoGlobe } from 'react-icons/go';
 import { MdArrowBack, MdDataUsage } from 'react-icons/md';
 
 import useProject from 'hooks/api/useProject';
 import Container from 'components/Layout/Container';
+import ProjectDeletionDialog from './DeleteProject';
 
 interface Props {
 	openIntegrationInstruction: () => void;
@@ -18,6 +27,12 @@ const ProjectHeader = ({ openIntegrationInstruction, openProjectMonthlyUsage }: 
 		query: { projectId }
 	} = useRouter();
 	const { data: { project } = {} } = useProject(projectId as string);
+
+	const {
+		isOpen: showProjectDeletionDialog,
+		onOpen: openProjectDeletionDialog,
+		onClose: closeProjectDeletionDialog
+	} = useDisclosure();
 
 	if (!project)
 		return (
@@ -69,8 +84,21 @@ const ProjectHeader = ({ openIntegrationInstruction, openProjectMonthlyUsage }: 
 							onClick={openIntegrationInstruction}
 						/>
 					</Tooltip>
+					<Tooltip label="Delete Project">
+						<IconButton
+							icon={<Icon as={BsTrash} height={6} width={6} />}
+							aria-label="Delete Project"
+							variant="ghost"
+							colorScheme="red"
+							onClick={openProjectDeletionDialog}
+						/>
+					</Tooltip>
 				</Flex>
 			</Flex>
+			<ProjectDeletionDialog
+				isOpen={showProjectDeletionDialog}
+				close={closeProjectDeletionDialog}
+			/>
 		</Container>
 	);
 };
