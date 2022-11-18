@@ -2,6 +2,7 @@ import fetcher from 'utils/fetch';
 
 import { getProjectCreationEndpoint, getProjectDeletionEndpoint } from 'utils/endpoints/project';
 import { authStore } from 'store/auth';
+import supabase from './supabase';
 
 export const createProject = async (projectInputs: any) => {
 	try {
@@ -29,3 +30,6 @@ export const deleteProject = async (projectId: string) => {
 		return { response: null, error };
 	}
 };
+
+export const renameProject = async (projectId: string, newName: string) =>
+	await supabase.from('projects').update({ project_name: newName }).eq('id', projectId).single();

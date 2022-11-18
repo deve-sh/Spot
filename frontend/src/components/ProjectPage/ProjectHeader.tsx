@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import {
 	Flex,
@@ -8,14 +9,17 @@ import {
 	Tooltip,
 	useDisclosure
 } from '@chakra-ui/react';
-import { BsCodeSlash, BsTrash } from 'react-icons/bs';
+import { BsCodeSlash, BsGlobe, BsPencil, BsTrash } from 'react-icons/bs';
 import { GoGlobe } from 'react-icons/go';
 import { MdArrowBack, MdDataUsage } from 'react-icons/md';
 
 import useProject from 'hooks/api/useProject';
-import Container from 'components/Layout/Container';
-import ProjectDeletionDialog from './DeleteProject';
 import useProjectUserRole from 'hooks/api/useProjectUserRole';
+
+import Container from 'components/Layout/Container';
+
+const ProjectDeletionDialog = dynamic(() => import('./DeleteProject'), { ssr: false });
+const ProjectRenamingDialog = dynamic(() => import('./RenameProject'), { ssr: false });
 
 interface Props {
 	openIntegrationInstruction: () => void;
@@ -30,6 +34,11 @@ const ProjectHeader = ({ openIntegrationInstruction, openProjectMonthlyUsage }: 
 		isOpen: showProjectDeletionDialog,
 		onOpen: openProjectDeletionDialog,
 		onClose: closeProjectDeletionDialog
+	} = useDisclosure();
+	const {
+		isOpen: showProjectRenamingDialog,
+		onOpen: openProjectRenamingDialog,
+		onClose: closeProjectRenamingDialog
 	} = useDisclosure();
 
 	if (!project)
@@ -76,12 +85,22 @@ const ProjectHeader = ({ openIntegrationInstruction, openProjectMonthlyUsage }: 
 					</Tooltip>
 					<Tooltip label="Integrate">
 						<IconButton
-							icon={<Icon as={BsCodeSlash} height={6} width={6} />}
+							icon={<Icon as={BsCodeSlash} height={7} width={7} />}
 							aria-label="Integrate"
 							variant="ghost"
 							onClick={openIntegrationInstruction}
 						/>
 					</Tooltip>
+					{role === 'admin' && (
+						<Tooltip label="Rename Project">
+							<IconButton
+								icon={<Icon as={BsPencil} height={6} width={6} />}
+								aria-label="Rename Project"
+								variant="ghost"
+								onClick={openProjectRenamingDialog}
+							/>
+						</Tooltip>
+					)}
 					{role === 'admin' && (
 						<Tooltip label="Delete Project">
 							<IconButton
@@ -98,6 +117,10 @@ const ProjectHeader = ({ openIntegrationInstruction, openProjectMonthlyUsage }: 
 			<ProjectDeletionDialog
 				isOpen={showProjectDeletionDialog}
 				close={closeProjectDeletionDialog}
+			/>
+			<ProjectRenamingDialog
+				isOpen={showProjectRenamingDialog}
+				close={closeProjectRenamingDialog}
 			/>
 		</Container>
 	);
