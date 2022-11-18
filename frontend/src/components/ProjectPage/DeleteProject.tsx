@@ -29,8 +29,6 @@ const ProjectDeletionDialog = ({ isOpen, close }: Props) => {
 		const { error } = await deleteProject(router.query.projectId as string);
 		setIsDeleting(false);
 
-		console.log({ error });
-
 		if (error)
 			return toast({
 				title: "Project couldn't be deleted.",

@@ -26,8 +26,6 @@ const ProjectHeader = ({ openIntegrationInstruction, openProjectMonthlyUsage }: 
 	const { data: { project } = {} } = useProject();
 	const { data: { role } = {} } = useProjectUserRole();
 
-	console.log({ role });
-
 	const {
 		isOpen: showProjectDeletionDialog,
 		onOpen: openProjectDeletionDialog,
