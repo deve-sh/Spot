@@ -51,7 +51,7 @@ const mapPerformanceEntries = () => {
 				['script', 'img', 'link'].includes(entry.initiatorType) &&
 				!entry.name.includes(config.BACKEND_URL)
 			) {
-				// Network/API Calls
+				// Script Tags and page resources
 				monitoringEntries.push({
 					type: 'page-resource',
 					resourceType: entry.initiatorType,
