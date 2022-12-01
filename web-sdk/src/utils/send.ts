@@ -12,7 +12,8 @@ const send = (endpoint: string, data?: any) => {
 		body: data ? JSON.stringify(data) : '',
 		mode: 'cors',
 		method: 'POST',
-		headers: { 'content-type': 'application/json', authorization: `Key ${apiKey}` }
+		headers: { 'content-type': 'application/json', authorization: `Key ${apiKey}` },
+		keepalive: true
 	})
 		.then(responseHandler)
 		.catch(() => null);
