@@ -33,3 +33,6 @@ export const deleteProject = async (projectId: string) => {
 
 export const renameProject = async (projectId: string, newName: string) =>
 	await supabase.from('projects').update({ project_name: newName }).eq('id', projectId).single();
+
+export const searchForUserForProject = async (email: string) =>
+	await supabase.rpc('get_user_matching_email', { email });
